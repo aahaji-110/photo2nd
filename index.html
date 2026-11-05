@@ -8,9 +8,13 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- html2pdf (PDF export) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <!-- Google Font Cairo -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
+        :root { --logo-light: url("data:image/png;base64,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"); }
+        .header-logo { background: var(--logo-light) center / contain no-repeat; }
         body {
             font-family: 'Cairo', sans-serif;
             background-color: #0b1120;
@@ -41,7 +45,7 @@
             background-repeat: no-repeat;
             background-position: center;
             background-size: contain;
-            background-image: url('https://upload.wikimedia.org/wikipedia/ar/thumb/9/90/Saudi_Second_Division_League_logo.png/640px-Saudi_Second_Division_League_logo.png');
+            background-image: var(--logo-light);
             height: 600px;
         }
         ::-webkit-scrollbar {
@@ -68,13 +72,10 @@
     </div>
 
     <!-- Header Section -->
-    <header class="w-full bg-slate-900/80 backdrop-blur-md border-b border-slate-800 sticky top-0 z-40 py-4 shadow-lg">
+    <header class="w-full bg-slate-900/80 backdrop-blur-md border-b border-slate-800 relative z-40 py-4 shadow-lg">
         <div class="max-w-7xl mx-auto px-4 flex flex-col items-center justify-center text-center gap-3">
             <!-- Top Center Logo -->
-            <img src="https://upload.wikimedia.org/wikipedia/ar/thumb/9/90/Saudi_Second_Division_League_logo.png/640px-Saudi_Second_Division_League_logo.png" 
-                 alt="شعار دوري الدرجة الثانية السعودي" 
-                 class="w-16 h-16 object-contain filter drop-shadow-md animate-pulse"
-                 onerror="this.src='https://placehold.co/100x100/1e293b/ffffff?text=SDL'">
+            <div role="img" aria-label="شعار دوري الدرجة الثانية السعودي" class="header-logo w-32 h-28"></div>
             <div>
                 <h1 class="text-xl md:text-2xl font-black text-white tracking-wide">تكاليف مصورين دوري الدرجة الثانية</h1>
                 <p class="text-xs text-slate-400 font-semibold mt-0.5">الموسم الرياضي 2026-2027</p>
@@ -95,13 +96,17 @@
                 <p class="text-xs text-slate-400 mt-1">اختر الجولة من القائمة المنسدلة لعرض مبارياتها وتعيين المصورين المكلفين</p>
             </div>
             
-            <div class="flex items-center gap-3 w-full md:w-auto">
+            <div class="flex flex-wrap items-center gap-3 w-full md:w-auto">
                 <select id="round-select" onchange="changeRound(this.value)" class="bg-slate-800 border border-slate-700 text-white text-sm rounded-xl px-5 py-3 focus:outline-none focus:border-emerald-500 w-full md:w-72 font-bold shadow-inner cursor-pointer">
                     <!-- Populated via JS -->
                 </select>
                 <button onclick="exportToWhatsApp()" class="bg-emerald-600 hover:bg-emerald-500 text-white px-5 py-3 rounded-xl font-bold text-sm shadow-lg shadow-emerald-900/30 flex items-center gap-2 whitespace-nowrap transition-all transform hover:scale-105 active:scale-95">
                     <i class="fa-brands fa-whatsapp text-lg"></i>
                     <span>تصدير للواتساب</span>
+                </button>
+                <button onclick="exportToPDF()" class="bg-rose-600 hover:bg-rose-500 text-white px-5 py-3 rounded-xl font-bold text-sm shadow-lg shadow-rose-900/30 flex items-center gap-2 whitespace-nowrap transition-all transform hover:scale-105 active:scale-95">
+                    <i class="fa-solid fa-file-pdf text-lg"></i>
+                    <span>تصدير PDF</span>
                 </button>
             </div>
         </div>
@@ -138,11 +143,6 @@
             </div>
             <div class="text-slate-300 font-semibold">
                 تصميم وبرمجة: <span class="text-emerald-400">علي الحاجي</span> | للتواصل: <a href="mailto:aahaji.110@gmail.com" class="text-emerald-400 hover:underline">aahaji.110@gmail.com</a>
-            </div>
-            <!-- Bottom Right Logo -->
-            <div class="absolute bottom-3 left-4 md:static md:bottom-auto md:left-auto">
-                <img src="https://upload.wikimedia.org/wikipedia/ar/thumb/9/90/Saudi_Second_Division_League_logo.png/640px-Saudi_Second_Division_League_logo.png" 
-                     alt="SDL Logo" class="w-10 h-10 object-contain filter drop-shadow">
             </div>
         </div>
     </footer>
@@ -196,11 +196,11 @@
             return `${formattedHours}:${minutes} ${period}`;
         }
 
-        // Raw Matches Dataset (Rounds 1 to 30)
+        // Raw Matches Dataset (Rounds 1 to 30) - 480 matches, 16 per round (from جدول_الدوري.txt)
         const rawMatchesData = [
             // الجولة 1
             { id: 1, round: 1, dateStr: "الجمعة 09-10-2026", time: "15:10", team1: "الساحل", team2: "الترجي", venue: "ملعب مدينة الأمير سعود بن جلوي الرياضية (الخبر)" },
-            { id: 2, round: 1, dateStr: "الجمعة 09-10-2026", time: "15:15", team1: "الصفا", team2: "عفيف", venue: "ملعب نادي الصفا (صفوى)" },
+            { id: 2, round: 1, dateStr: "الجمعة 09-10-2026", time: "15:10", team1: "الصفا", team2: "عفيف", venue: "ملعب نادي الصفا (صفوى)" },
             { id: 3, round: 1, dateStr: "الجمعة 09-10-2026", time: "15:15", team1: "النعيرية", team2: "وج", venue: "ملعب نادي النعيرية (النعيرية)" },
             { id: 4, round: 1, dateStr: "الجمعة 09-10-2026", time: "15:25", team1: "الباطن", team2: "القوارة", venue: "ملعب نادي الباطن (حفر الباطن)" },
             { id: 5, round: 1, dateStr: "الجمعة 09-10-2026", time: "15:40", team1: "الغوطة", team2: "الريان", venue: "ملعب نادي الغوطة (موقق)" },
@@ -237,7 +237,526 @@
             { id: 32, round: 3, dateStr: "السبت 24-10-2026", time: "15:35", team1: "بيش", team2: "عفيف", venue: "الملعب الرديف رقم (2) بمدينة الأمير سلطان بن عبدالعزيز الرياضية (أبها)" },
             { id: 33, round: 3, dateStr: "السبت 24-10-2026", time: "15:35", team1: "جبة", team2: "قلوة", venue: "ملعب نادي الطائي (حائل)" },
             { id: 34, round: 3, dateStr: "السبت 24-10-2026", time: "15:35", team1: "القوس", team2: "الروضة", venue: "ملعب نادي القوس (الخرمة)" },
-            { id: 35, round: 3, dateStr: "السبت 24-10-2026", time: "18:55", team1: "الصفا", team2: "العين", venue: "ملعب نادي الصفا (صفوى)" }
+            { id: 35, round: 3, dateStr: "السبت 24-10-2026", time: "18:55", team1: "الصفا", team2: "العين", venue: "ملعب نادي الصفا (صفوى)" },
+
+            // الجولة 4
+            { id: 36, round: 4, dateStr: "الثلاثاء 27-10-2026", time: "15:35", team1: "القلعة", team2: "الباطن", venue: "ملعب نادي العروبة (الجوف)" },
+            { id: 37, round: 4, dateStr: "الأربعاء 28-10-2026", time: "15:05", team1: "النعيرية", team2: "الترجي", venue: "ملعب نادي النعيرية (النعيرية)" },
+            { id: 38, round: 4, dateStr: "الأربعاء 28-10-2026", time: "15:25", team1: "القوارة", team2: "الصفا", venue: "ملعب نادي القوارة (القوارة)" },
+            { id: 39, round: 4, dateStr: "الأربعاء 28-10-2026", time: "15:30", team1: "عفيف", team2: "العين", venue: "ملعب نادي عفيف (عفيف)" },
+            { id: 40, round: 4, dateStr: "الأربعاء 28-10-2026", time: "15:30", team1: "الغوطة", team2: "الساحل", venue: "ملعب نادي الطائي (حائل)" },
+            { id: 41, round: 4, dateStr: "الأربعاء 28-10-2026", time: "15:30", team1: "عرعر", team2: "الريان", venue: "الملعب الرديف الصناعي بمدينة الأمير عبدالله بن عبدالعزيز بن مساعد (عرعر)" },
+            { id: 42, round: 4, dateStr: "الأربعاء 28-10-2026", time: "15:35", team1: "بيش", team2: "حطين", venue: "الملعب الرديف رقم (2) بمدينة الأمير سلطان بن عبدالعزيز الرياضية (أبها)" },
+            { id: 43, round: 4, dateStr: "الأربعاء 28-10-2026", time: "15:40", team1: "وج", team2: "مضر", venue: "ملعب نادي عكاظ (الطائف)" },
+            { id: 44, round: 4, dateStr: "الخميس 29-10-2026", time: "15:00", team1: "الهدى", team2: "الانتصار", venue: "ملعب نادي الترجي (القطيف)" },
+            { id: 45, round: 4, dateStr: "الخميس 29-10-2026", time: "15:10", team1: "الشعلة", team2: "الوشم", venue: "ملعب نادي الشعلة (الخرج)" },
+            { id: 46, round: 4, dateStr: "الخميس 29-10-2026", time: "15:10", team1: "الشرق", team2: "نجران", venue: "ملعب شركة التمدين الوطنية بنادي الشرق (الدلم)" },
+            { id: 47, round: 4, dateStr: "الخميس 29-10-2026", time: "15:30", team1: "جبة", team2: "العربي", venue: "ملعب نادي الطائي (حائل)" },
+            { id: 48, round: 4, dateStr: "الخميس 29-10-2026", time: "15:35", team1: "جرش", team2: "القوس", venue: "الملعب الرديف رقم (2) بمدينة الأمير سلطان بن عبدالعزيز الرياضية (أبها)" },
+            { id: 49, round: 4, dateStr: "الخميس 29-10-2026", time: "15:40", team1: "قلوة", team2: "النجوم", venue: "ملعب نادي قلوة (قلوة)" },
+            { id: 50, round: 4, dateStr: "الخميس 29-10-2026", time: "19:30", team1: "الروضة", team2: "اللواء", venue: "ملعب نادي الروضة (الأحساء)" },
+            { id: 51, round: 4, dateStr: "الخميس 29-10-2026", time: "20:00", team1: "الكوكب", team2: "الجبيل", venue: "ملعب نادي الشعلة (الخرج)" },
+
+            // الجولة 5
+            { id: 52, round: 5, dateStr: "الاثنين 02-11-2026", time: "14:55", team1: "الترجي", team2: "الباطن", venue: "ملعب نادي الترجي (القطيف)" },
+            { id: 53, round: 5, dateStr: "الاثنين 02-11-2026", time: "14:55", team1: "الساحل", team2: "القوارة", venue: "ملعب نادي النهضة (الدمام)" },
+            { id: 54, round: 5, dateStr: "الاثنين 02-11-2026", time: "14:55", team1: "الصفا", team2: "وج", venue: "ملعب نادي الصفا (صفوى)" },
+            { id: 55, round: 5, dateStr: "الاثنين 02-11-2026", time: "15:25", team1: "عفيف", team2: "النعيرية", venue: "ملعب نادي عفيف (عفيف)" },
+            { id: 56, round: 5, dateStr: "الاثنين 02-11-2026", time: "15:30", team1: "الريان", team2: "القلعة", venue: "ملعب نادي الطائي (حائل)" },
+            { id: 57, round: 5, dateStr: "الاثنين 02-11-2026", time: "15:35", team1: "العين", team2: "عرعر", venue: "الملعب الرديف بمدينة الملك سعود بن عبدالعزيز الرياضية (الباحة)" },
+            { id: 58, round: 5, dateStr: "الاثنين 02-11-2026", time: "15:35", team1: "حطين", team2: "الغوطة", venue: "الملعب الرديف رقم (2) بمدينة الأمير سلطان بن عبدالعزيز الرياضية (أبها)" },
+            { id: 59, round: 5, dateStr: "الثلاثاء 03-11-2026", time: "14:55", team1: "مضر", team2: "بيش", venue: "ملعب نادي الترجي (القطيف)" },
+            { id: 60, round: 5, dateStr: "الثلاثاء 03-11-2026", time: "14:55", team1: "الجبيل", team2: "الشرق", venue: "ملعب نادي الجبيل (الجبيل)" },
+            { id: 61, round: 5, dateStr: "الثلاثاء 03-11-2026", time: "15:00", team1: "النجوم", team2: "الشعلة", venue: "رديف مدينة الأمير عبدالله بن جلوي الرياضية رقم (3) (الأحساء)" },
+            { id: 62, round: 5, dateStr: "الثلاثاء 03-11-2026", time: "15:15", team1: "الوشم", team2: "الهدى", venue: "ملعب نادي الوشم (شقراء)" },
+            { id: 63, round: 5, dateStr: "الثلاثاء 03-11-2026", time: "15:25", team1: "اللواء", team2: "قلوة", venue: "ملعب نادي اللواء (بقعاء)" },
+            { id: 64, round: 5, dateStr: "الثلاثاء 03-11-2026", time: "15:25", team1: "نجران", team2: "جبة", venue: "الملعب الرديف رقم (2) بمدينة الأمير سلطان بن عبدالعزيز الرياضية (أبها)" },
+            { id: 65, round: 5, dateStr: "الثلاثاء 03-11-2026", time: "15:30", team1: "القوس", team2: "العربي", venue: "ملعب نادي القوس (الخرمة)" },
+            { id: 66, round: 5, dateStr: "الثلاثاء 03-11-2026", time: "15:45", team1: "الانتصار", team2: "الروضة", venue: "ملعب نادي الإنتصار (رابغ)" },
+
+            // الجولة 6
+            { id: 67, round: 6, dateStr: "الجمعة 06-11-2026", time: "15:30", team1: "القلعة", team2: "عفيف", venue: "استاد جامعة الجوف (الجوف)" },
+            { id: 68, round: 6, dateStr: "السبت 07-11-2026", time: "14:55", team1: "مضر", team2: "الساحل", venue: "ملعب نادي الترجي (القطيف)" },
+            { id: 69, round: 6, dateStr: "السبت 07-11-2026", time: "15:10", team1: "الباطن", team2: "العين", venue: "الملعب الرديف بنادي الباطن (حفر الباطن)" },
+            { id: 70, round: 6, dateStr: "السبت 07-11-2026", time: "15:20", team1: "القوارة", team2: "الترجي", venue: "ملعب نادي القوارة (القوارة)" },
+            { id: 71, round: 6, dateStr: "السبت 07-11-2026", time: "15:25", team1: "الغوطة", team2: "وج", venue: "ملعب نادي الغوطة (موقق)" },
+            { id: 72, round: 6, dateStr: "السبت 07-11-2026", time: "19:20", team1: "الريان", team2: "الصفا", venue: "ملعب نادي الطائي (حائل)" },
+            { id: 73, round: 6, dateStr: "الأحد 08-11-2026", time: "14:55", team1: "الروضة", team2: "الشعلة", venue: "رديف مدينة الأمير عبدالله بن جلوي الرياضية رقم (1) (الأحساء)" },
+            { id: 74, round: 6, dateStr: "الأحد 08-11-2026", time: "14:55", team1: "الهدى", team2: "الشرق", venue: "ملعب نادي الصفا (صفوى)" },
+            { id: 75, round: 6, dateStr: "الأحد 08-11-2026", time: "15:15", team1: "الوشم", team2: "اللواء", venue: "ملعب نادي الوشم (شقراء)" },
+            { id: 76, round: 6, dateStr: "الأحد 08-11-2026", time: "15:20", team1: "العربي", team2: "الجبيل", venue: "ملعب إدارة التعليم (عنيزة)" },
+            { id: 77, round: 6, dateStr: "الأحد 08-11-2026", time: "15:25", team1: "جبة", team2: "الكوكب", venue: "ملعب نادي الطائي (حائل)" },
+            { id: 78, round: 6, dateStr: "الأحد 08-11-2026", time: "15:30", team1: "جرش", team2: "الانتصار", venue: "الملعب الرديف رقم (2) بمدينة الأمير سلطان بن عبدالعزيز الرياضية (أبها)" },
+            { id: 79, round: 6, dateStr: "الأحد 08-11-2026", time: "15:35", team1: "قلوة", team2: "القوس", venue: "ملعب نادي قلوة (قلوة)" },
+            { id: 80, round: 6, dateStr: "الأحد 08-11-2026", time: "18:15", team1: "بيش", team2: "عرعر", venue: "الملعب الرديف رقم (2) بمدينة الأمير سلطان بن عبدالعزيز الرياضية (أبها)" },
+            { id: 81, round: 6, dateStr: "الاثنين 09-11-2026", time: "15:25", team1: "نجران", team2: "النجوم", venue: "الملعب الرديف رقم (2) بمدينة الأمير سلطان بن عبدالعزيز الرياضية (أبها)" },
+
+            // الجولة 7
+            { id: 82, round: 7, dateStr: "الجمعة 13-11-2026", time: "14:50", team1: "الصفا", team2: "القلعة", venue: "ملعب نادي الصفا (صفوى)" },
+            { id: 83, round: 7, dateStr: "الجمعة 13-11-2026", time: "14:55", team1: "النعيرية", team2: "الساحل", venue: "ملعب نادي النعيرية (النعيرية)" },
+            { id: 84, round: 7, dateStr: "الجمعة 13-11-2026", time: "15:05", team1: "الباطن", team2: "بيش", venue: "الملعب الرديف بنادي الباطن (حفر الباطن)" },
+            { id: 85, round: 7, dateStr: "الجمعة 13-11-2026", time: "15:20", team1: "عرعر", team2: "الغوطة", venue: "الملعب الرديف الصناعي بمدينة الأمير عبدالله بن عبدالعزيز بن مساعد (عرعر)" },
+            { id: 86, round: 7, dateStr: "الجمعة 13-11-2026", time: "15:25", team1: "عفيف", team2: "الريان", venue: "ملعب نادي عفيف (عفيف)" },
+            { id: 87, round: 7, dateStr: "الجمعة 13-11-2026", time: "15:30", team1: "حطين", team2: "مضر", venue: "الملعب الرديف رقم (2) بمدينة الأمير سلطان بن عبدالعزيز الرياضية (أبها)" },
+            { id: 88, round: 7, dateStr: "الجمعة 13-11-2026", time: "15:35", team1: "العين", team2: "الترجي", venue: "الملعب الرديف بمدينة الملك سعود بن عبدالعزيز الرياضية (الباحة)" },
+            { id: 89, round: 7, dateStr: "الجمعة 13-11-2026", time: "15:35", team1: "وج", team2: "القوارة", venue: "استاد مدينة الملك فهد الرياضية (الطائف)" },
+            { id: 90, round: 7, dateStr: "السبت 14-11-2026", time: "14:50", team1: "الجبيل", team2: "القوس", venue: "ملعب نادي الترجي (القطيف)" },
+            { id: 91, round: 7, dateStr: "السبت 14-11-2026", time: "14:55", team1: "النجوم", team2: "جبة", venue: "رديف مدينة الأمير عبدالله بن جلوي الرياضية رقم (3) (الأحساء)" },
+            { id: 92, round: 7, dateStr: "السبت 14-11-2026", time: "15:05", team1: "الشرق", team2: "الروضة", venue: "ملعب شركة التمدين الوطنية بنادي الشرق (الدلم)" },
+            { id: 93, round: 7, dateStr: "السبت 14-11-2026", time: "15:05", team1: "الشعلة", team2: "قلوة", venue: "ملعب نادي الشعلة (الخرج)" },
+            { id: 94, round: 7, dateStr: "السبت 14-11-2026", time: "15:15", team1: "العربي", team2: "الهدى", venue: "ملعب إدارة التعليم (عنيزة)" },
+            { id: 95, round: 7, dateStr: "السبت 14-11-2026", time: "15:30", team1: "جرش", team2: "اللواء", venue: "الملعب الرديف رقم (2) بمدينة الأمير سلطان بن عبدالعزيز الرياضية (أبها)" },
+            { id: 96, round: 7, dateStr: "السبت 14-11-2026", time: "15:40", team1: "الانتصار", team2: "الوشم", venue: "ملعب نادي الإنتصار (رابغ)" },
+            { id: 97, round: 7, dateStr: "الأحد 15-11-2026", time: "15:05", team1: "الكوكب", team2: "نجران", venue: "ملعب نادي الشعلة (الخرج)" },
+
+            // الجولة 8
+            { id: 98, round: 8, dateStr: "الجمعة 20-11-2026", time: "14:50", team1: "مضر", team2: "الباطن", venue: "ملعب نادي الصفا (صفوى)" },
+            { id: 99, round: 8, dateStr: "الجمعة 20-11-2026", time: "14:50", team1: "الساحل", team2: "عفيف", venue: "ملعب مدينة الأمير سعود بن جلوي الرياضية (الخبر)" },
+            { id: 100, round: 8, dateStr: "الجمعة 20-11-2026", time: "14:50", team1: "الترجي", team2: "الصفا", venue: "ملعب نادي الترجي (القطيف)" },
+            { id: 101, round: 8, dateStr: "الجمعة 20-11-2026", time: "14:50", team1: "الهدى", team2: "نجران", venue: "ملعب مدينة الأمير نايف بن عبدالعزيز الرياضية (القطيف)" },
+            { id: 102, round: 8, dateStr: "الجمعة 20-11-2026", time: "15:15", team1: "القوارة", team2: "النعيرية", venue: "ملعب نادي القوارة (القوارة)" },
+            { id: 103, round: 8, dateStr: "الجمعة 20-11-2026", time: "15:35", team1: "حطين", team2: "عرعر", venue: "الملعب الرديف رقم (2) بمدينة الأمير سلطان بن عبدالعزيز الرياضية (أبها)" },
+            { id: 104, round: 8, dateStr: "الجمعة 20-11-2026", time: "15:35", team1: "العين", team2: "الغوطة", venue: "استاد مدينة الملك سعود بن عبدالعزيز الرياضية (الباحة)" },
+            { id: 105, round: 8, dateStr: "الجمعة 20-11-2026", time: "15:35", team1: "وج", team2: "القلعة", venue: "استاد مدينة الملك فهد الرياضية (الطائف)" },
+            { id: 106, round: 8, dateStr: "الجمعة 20-11-2026", time: "18:10", team1: "بيش", team2: "الريان", venue: "الملعب الرديف رقم (2) بمدينة الأمير سلطان بن عبدالعزيز الرياضية (أبها)" },
+            { id: 107, round: 8, dateStr: "السبت 21-11-2026", time: "14:50", team1: "الجبيل", team2: "الروضة", venue: "ملعب نادي الجبيل (الجبيل)" },
+            { id: 108, round: 8, dateStr: "السبت 21-11-2026", time: "15:05", team1: "الشعلة", team2: "جبة", venue: "ملعب نادي الشعلة (الخرج)" },
+            { id: 109, round: 8, dateStr: "السبت 21-11-2026", time: "15:10", team1: "الوشم", team2: "العربي", venue: "ملعب نادي الوشم (شقراء)" },
+            { id: 110, round: 8, dateStr: "السبت 21-11-2026", time: "15:20", team1: "اللواء", team2: "الكوكب", venue: "ملعب نادي اللواء (بقعاء)" },
+            { id: 111, round: 8, dateStr: "السبت 21-11-2026", time: "15:30", team1: "القوس", team2: "النجوم", venue: "ملعب نادي القوس (الخرمة)" },
+            { id: 112, round: 8, dateStr: "السبت 21-11-2026", time: "15:35", team1: "قلوة", team2: "جرش", venue: "ملعب نادي قلوة (قلوة)" },
+            { id: 113, round: 8, dateStr: "السبت 21-11-2026", time: "15:40", team1: "الانتصار", team2: "الشرق", venue: "ملعب نادي الإنتصار (رابغ)" },
+
+            // الجولة 3
+            { id: 114, round: 3, dateStr: "الثلاثاء 24-11-2026", time: "15:20", team1: "اللواء", team2: "نجران", venue: "ملعب نادي اللواء (بقعاء)" },
+
+            // الجولة 9
+            { id: 115, round: 9, dateStr: "الجمعة 27-11-2026", time: "14:50", team1: "الساحل", team2: "حطين", venue: "ملعب مدينة الأمير سعود بن جلوي الرياضية (الخبر)" },
+            { id: 116, round: 9, dateStr: "الجمعة 27-11-2026", time: "14:50", team1: "الصفا", team2: "مضر", venue: "ملعب نادي الصفا (صفوى)" },
+            { id: 117, round: 9, dateStr: "الجمعة 27-11-2026", time: "14:55", team1: "النعيرية", team2: "العين", venue: "ملعب نادي النعيرية (النعيرية)" },
+            { id: 118, round: 9, dateStr: "الجمعة 27-11-2026", time: "15:15", team1: "عرعر", team2: "عفيف", venue: "ملعب مدينة الأمير عبدالله بن عبدالعزيز بن مساعد (عرعر)" },
+            { id: 119, round: 9, dateStr: "الجمعة 27-11-2026", time: "15:15", team1: "الغوطة", team2: "القوارة", venue: "ملعب نادي الغوطة (موقق)" },
+            { id: 120, round: 9, dateStr: "الجمعة 27-11-2026", time: "15:20", team1: "الريان", team2: "الباطن", venue: "ملعب نادي الجبلين (حائل)" },
+            { id: 121, round: 9, dateStr: "الجمعة 27-11-2026", time: "15:20", team1: "القلعة", team2: "الترجي", venue: "استاد جامعة الجوف (الجوف)" },
+            { id: 122, round: 9, dateStr: "الجمعة 27-11-2026", time: "15:30", team1: "بيش", team2: "وج", venue: "ملعب نادي بيش (بيش)" },
+            { id: 123, round: 9, dateStr: "السبت 28-11-2026", time: "14:50", team1: "الهدى", team2: "الشعلة", venue: "ملعب مدينة الأمير سعود بن جلوي الرياضية (الخبر)" },
+            { id: 124, round: 9, dateStr: "السبت 28-11-2026", time: "14:55", team1: "النجوم", team2: "الوشم", venue: "رديف مدينة الأمير عبدالله بن جلوي الرياضية رقم (2) (الأحساء)" },
+            { id: 125, round: 9, dateStr: "السبت 28-11-2026", time: "14:55", team1: "الروضة", team2: "قلوة", venue: "رديف مدينة الأمير عبدالله بن جلوي الرياضية رقم (1) (الأحساء)" },
+            { id: 126, round: 9, dateStr: "السبت 28-11-2026", time: "15:05", team1: "الشرق", team2: "الكوكب", venue: "ملعب شركة التمدين الوطنية بنادي الشرق (الدلم)" },
+            { id: 127, round: 9, dateStr: "السبت 28-11-2026", time: "15:15", team1: "اللواء", team2: "الانتصار", venue: "ملعب نادي اللواء (بقعاء)" },
+            { id: 128, round: 9, dateStr: "السبت 28-11-2026", time: "15:20", team1: "جبة", team2: "القوس", venue: "ملعب نادي الجبلين (حائل)" },
+            { id: 129, round: 9, dateStr: "السبت 28-11-2026", time: "15:25", team1: "نجران", team2: "العربي", venue: "ملعب مدينة الأمير هذلول بن عبدالعزيز الرياضية (نجران)" },
+            { id: 130, round: 9, dateStr: "السبت 28-11-2026", time: "15:30", team1: "جرش", team2: "الجبيل", venue: "الملعب الرديف رقم (1) بمدينة الأمير سلطان بن عبدالعزيز الرياضية (أبها)" },
+
+            // الجولة 6
+            { id: 131, round: 6, dateStr: "الثلاثاء 01-12-2026", time: "14:50", team1: "النعيرية", team2: "حطين", venue: "ملعب نادي النعيرية (النعيرية)" },
+
+            // الجولة 2
+            { id: 132, round: 2, dateStr: "الثلاثاء 01-12-2026", time: "15:40", team1: "العين", team2: "القلعة", venue: "استاد مدينة الملك سعود بن عبدالعزيز الرياضية (الباحة)" },
+
+            // الجولة 10
+            { id: 133, round: 10, dateStr: "الجمعة 04-12-2026", time: "14:50", team1: "الصفا", team2: "النعيرية", venue: "ملعب نادي الصفا (صفوى)" },
+            { id: 134, round: 10, dateStr: "الجمعة 04-12-2026", time: "14:50", team1: "الترجي", team2: "بيش", venue: "ملعب مدينة الأمير نايف بن عبدالعزيز الرياضية (القطيف)" },
+            { id: 135, round: 10, dateStr: "الجمعة 04-12-2026", time: "15:00", team1: "الباطن", team2: "وج", venue: "ملعب نادي الباطن (حفر الباطن)" },
+            { id: 136, round: 10, dateStr: "الجمعة 04-12-2026", time: "15:15", team1: "القوارة", team2: "عرعر", venue: "ملعب نادي القوارة (القوارة)" },
+            { id: 137, round: 10, dateStr: "الجمعة 04-12-2026", time: "15:20", team1: "القلعة", team2: "مضر", venue: "استاد جامعة الجوف (الجوف)" },
+            { id: 138, round: 10, dateStr: "الجمعة 04-12-2026", time: "15:20", team1: "الريان", team2: "حطين", venue: "ملعب نادي الجبلين (حائل)" },
+            { id: 139, round: 10, dateStr: "الجمعة 04-12-2026", time: "15:25", team1: "عفيف", team2: "الغوطة", venue: "ملعب نادي عفيف (عفيف)" },
+            { id: 140, round: 10, dateStr: "الجمعة 04-12-2026", time: "15:35", team1: "العين", team2: "الساحل", venue: "استاد مدينة الملك سعود بن عبدالعزيز الرياضية (الباحة)" },
+            { id: 141, round: 10, dateStr: "السبت 05-12-2026", time: "14:50", team1: "الجبيل", team2: "اللواء", venue: "ملعب نادي الجبيل (الجبيل)" },
+            { id: 142, round: 10, dateStr: "السبت 05-12-2026", time: "14:55", team1: "النجوم", team2: "جرش", venue: "رديف مدينة الأمير عبدالله بن جلوي الرياضية رقم (2) (الأحساء)" },
+            { id: 143, round: 10, dateStr: "السبت 05-12-2026", time: "15:10", team1: "الكوكب", team2: "الروضة", venue: "ملعب نادي الأنوار (حوطة بني تميم)" },
+            { id: 144, round: 10, dateStr: "السبت 05-12-2026", time: "15:15", team1: "العربي", team2: "الشعلة", venue: "ملعب إدارة التعليم (عنيزة)" },
+            { id: 145, round: 10, dateStr: "السبت 05-12-2026", time: "15:20", team1: "جبة", team2: "الوشم", venue: "ملعب نادي الجبلين (حائل)" },
+            { id: 146, round: 10, dateStr: "السبت 05-12-2026", time: "15:25", team1: "نجران", team2: "الانتصار", venue: "ملعب مدينة الأمير هذلول بن عبدالعزيز الرياضية (نجران)" },
+            { id: 147, round: 10, dateStr: "السبت 05-12-2026", time: "15:30", team1: "القوس", team2: "الهدى", venue: "ملعب نادي القوس (الخرمة)" },
+            { id: 148, round: 10, dateStr: "السبت 05-12-2026", time: "15:35", team1: "قلوة", team2: "الشرق", venue: "ملعب نادي قلوة (قلوة)" },
+
+            // الجولة 11
+            { id: 149, round: 11, dateStr: "الأربعاء 09-12-2026", time: "14:50", team1: "الساحل", team2: "بيش", venue: "ملعب مدينة الأمير سعود بن جلوي الرياضية (الخبر)" },
+            { id: 150, round: 11, dateStr: "الأربعاء 09-12-2026", time: "14:50", team1: "مضر", team2: "الترجي", venue: "ملعب مدينة الأمير نايف بن عبدالعزيز الرياضية (القطيف)" },
+            { id: 151, round: 11, dateStr: "الأربعاء 09-12-2026", time: "14:55", team1: "النعيرية", team2: "الباطن", venue: "ملعب نادي النعيرية (النعيرية)" },
+            { id: 152, round: 11, dateStr: "الأربعاء 09-12-2026", time: "15:15", team1: "القوارة", team2: "عفيف", venue: "ملعب نادي القوارة (القوارة)" },
+            { id: 153, round: 11, dateStr: "الأربعاء 09-12-2026", time: "15:20", team1: "الغوطة", team2: "الصفا", venue: "ملعب نادي الغوطة (موقق)" },
+            { id: 154, round: 11, dateStr: "الأربعاء 09-12-2026", time: "15:20", team1: "عرعر", team2: "القلعة", venue: "ملعب مدينة الأمير عبدالله بن عبدالعزيز بن مساعد (عرعر)" },
+            { id: 155, round: 11, dateStr: "الأربعاء 09-12-2026", time: "15:35", team1: "حطين", team2: "العين", venue: "استاد مدينة الملك فيصل الرياضية (جازان)" },
+            { id: 156, round: 11, dateStr: "الأربعاء 09-12-2026", time: "15:40", team1: "وج", team2: "الريان", venue: "استاد مدينة الملك فهد الرياضية (الطائف)" },
+            { id: 157, round: 11, dateStr: "الخميس 10-12-2026", time: "14:55", team1: "الروضة", team2: "النجوم", venue: "ملعب نادي الروضة (الأحساء)" },
+            { id: 158, round: 11, dateStr: "الخميس 10-12-2026", time: "15:05", team1: "الشرق", team2: "جبة", venue: "ملعب شركة التمدين الوطنية بنادي الشرق (الدلم)" },
+            { id: 159, round: 11, dateStr: "الخميس 10-12-2026", time: "15:10", team1: "الوشم", team2: "القوس", venue: "ملعب نادي كميت (مرات)" },
+            { id: 160, round: 11, dateStr: "الخميس 10-12-2026", time: "15:10", team1: "الشعلة", team2: "نجران", venue: "ملعب نادي الأنوار (حوطة بني تميم)" },
+            { id: 161, round: 11, dateStr: "الخميس 10-12-2026", time: "15:20", team1: "اللواء", team2: "الهدى", venue: "ملعب نادي اللواء (بقعاء)" },
+            { id: 162, round: 11, dateStr: "الخميس 10-12-2026", time: "15:35", team1: "جرش", team2: "العربي", venue: "الملعب الرديف رقم (1) بمدينة الأمير سلطان بن عبدالعزيز الرياضية (أبها)" },
+            { id: 163, round: 11, dateStr: "الخميس 10-12-2026", time: "15:35", team1: "قلوة", team2: "الكوكب", venue: "ملعب نادي قلوة (قلوة)" },
+            { id: 164, round: 11, dateStr: "الخميس 10-12-2026", time: "15:40", team1: "الانتصار", team2: "الجبيل", venue: "ملعب نادي الإنتصار (رابغ)" },
+
+            // الجولة 12
+            { id: 165, round: 12, dateStr: "الاثنين 14-12-2026", time: "14:50", team1: "الترجي", team2: "حطين", venue: "ملعب مدينة الأمير نايف بن عبدالعزيز الرياضية (القطيف)" },
+            { id: 166, round: 12, dateStr: "الاثنين 14-12-2026", time: "14:50", team1: "الصفا", team2: "عرعر", venue: "ملعب نادي الصفا (صفوى)" },
+            { id: 167, round: 12, dateStr: "الاثنين 14-12-2026", time: "15:05", team1: "الباطن", team2: "الساحل", venue: "ملعب نادي الباطن (حفر الباطن)" },
+            { id: 168, round: 12, dateStr: "الاثنين 14-12-2026", time: "15:25", team1: "الريان", team2: "القوارة", venue: "ملعب نادي الجبلين (حائل)" },
+            { id: 169, round: 12, dateStr: "الاثنين 14-12-2026", time: "15:25", team1: "القلعة", team2: "الغوطة", venue: "استاد جامعة الجوف (الجوف)" },
+            { id: 170, round: 12, dateStr: "الاثنين 14-12-2026", time: "15:25", team1: "عفيف", team2: "وج", venue: "ملعب نادي عفيف (عفيف)" },
+            { id: 171, round: 12, dateStr: "الاثنين 14-12-2026", time: "15:35", team1: "العين", team2: "مضر", venue: "استاد مدينة الملك سعود بن عبدالعزيز الرياضية (الباحة)" },
+            { id: 172, round: 12, dateStr: "الاثنين 14-12-2026", time: "15:35", team1: "بيش", team2: "النعيرية", venue: "ملعب نادي بيش (بيش)" },
+            { id: 173, round: 12, dateStr: "الثلاثاء 15-12-2026", time: "14:50", team1: "الهدى", team2: "جرش", venue: "ملعب مدينة الأمير سعود بن جلوي الرياضية (الخبر)" },
+            { id: 174, round: 12, dateStr: "الثلاثاء 15-12-2026", time: "14:55", team1: "الجبيل", team2: "الوشم", venue: "ملعب نادي الجبيل (الجبيل)" },
+            { id: 175, round: 12, dateStr: "الثلاثاء 15-12-2026", time: "14:55", team1: "النجوم", team2: "الشرق", venue: "رديف مدينة الأمير عبدالله بن جلوي الرياضية رقم (2) (الأحساء)" },
+            { id: 176, round: 12, dateStr: "الثلاثاء 15-12-2026", time: "15:10", team1: "الكوكب", team2: "الشعلة", venue: "ملعب نادي الأنوار (حوطة بني تميم)" },
+            { id: 177, round: 12, dateStr: "الثلاثاء 15-12-2026", time: "15:20", team1: "العربي", team2: "اللواء", venue: "ملعب نادي النجمة (عنيزة)" },
+            { id: 178, round: 12, dateStr: "الثلاثاء 15-12-2026", time: "15:25", team1: "جبة", team2: "الروضة", venue: "ملعب نادي الجبلين (حائل)" },
+            { id: 179, round: 12, dateStr: "الثلاثاء 15-12-2026", time: "15:30", team1: "نجران", team2: "قلوة", venue: "ملعب مدينة الأمير هذلول بن عبدالعزيز الرياضية (نجران)" },
+            { id: 180, round: 12, dateStr: "الثلاثاء 15-12-2026", time: "15:35", team1: "القوس", team2: "الانتصار", venue: "ملعب نادي القوس (الخرمة)" },
+
+            // الجولة 13
+            { id: 181, round: 13, dateStr: "السبت 19-12-2026", time: "14:55", team1: "الساحل", team2: "الصفا", venue: "ملعب مدينة الأمير سعود بن جلوي الرياضية (الخبر)" },
+            { id: 182, round: 13, dateStr: "السبت 19-12-2026", time: "15:00", team1: "النعيرية", team2: "القلعة", venue: "ملعب نادي النعيرية (النعيرية)" },
+            { id: 183, round: 13, dateStr: "السبت 19-12-2026", time: "15:20", team1: "عرعر", team2: "الباطن", venue: "ملعب مدينة الأمير عبدالله بن عبدالعزيز بن مساعد (عرعر)" },
+            { id: 184, round: 13, dateStr: "السبت 19-12-2026", time: "15:20", team1: "القوارة", team2: "العين", venue: "ملعب نادي القوارة (القوارة)" },
+            { id: 185, round: 13, dateStr: "السبت 19-12-2026", time: "15:20", team1: "الغوطة", team2: "بيش", venue: "ملعب نادي الغوطة (موقق)" },
+            { id: 186, round: 13, dateStr: "السبت 19-12-2026", time: "15:25", team1: "الريان", team2: "مضر", venue: "ملعب نادي الجبلين (حائل)" },
+            { id: 187, round: 13, dateStr: "السبت 19-12-2026", time: "15:40", team1: "حطين", team2: "عفيف", venue: "استاد مدينة الملك فيصل الرياضية (جازان)" },
+            { id: 188, round: 13, dateStr: "السبت 19-12-2026", time: "15:40", team1: "وج", team2: "الترجي", venue: "استاد مدينة الملك فهد الرياضية (الطائف)" },
+            { id: 189, round: 13, dateStr: "الأحد 20-12-2026", time: "15:00", team1: "الروضة", team2: "الهدى", venue: "ملعب نادي الروضة (الأحساء)" },
+            { id: 190, round: 13, dateStr: "الأحد 20-12-2026", time: "15:10", team1: "الشرق", team2: "العربي", venue: "ملعب شركة التمدين الوطنية بنادي الشرق (الدلم)" },
+            { id: 191, round: 13, dateStr: "الأحد 20-12-2026", time: "15:15", team1: "الشعلة", team2: "القوس", venue: "ملعب نادي الأنوار (حوطة بني تميم)" },
+            { id: 192, round: 13, dateStr: "الأحد 20-12-2026", time: "15:20", team1: "اللواء", team2: "النجوم", venue: "ملعب نادي اللواء (بقعاء)" },
+            { id: 193, round: 13, dateStr: "الأحد 20-12-2026", time: "15:35", team1: "نجران", team2: "الوشم", venue: "ملعب مدينة الأمير هذلول بن عبدالعزيز الرياضية (نجران)" },
+            { id: 194, round: 13, dateStr: "الأحد 20-12-2026", time: "15:40", team1: "قلوة", team2: "الجبيل", venue: "ملعب نادي قلوة (قلوة)" },
+            { id: 195, round: 13, dateStr: "الأحد 20-12-2026", time: "15:40", team1: "جرش", team2: "جبة", venue: "الملعب الرديف رقم (1) بمدينة الأمير سلطان بن عبدالعزيز الرياضية (أبها)" },
+            { id: 196, round: 13, dateStr: "الأحد 20-12-2026", time: "15:45", team1: "الانتصار", team2: "الكوكب", venue: "ملعب نادي الإنتصار (رابغ)" },
+
+            // الجولة 14
+            { id: 197, round: 14, dateStr: "الخميس 24-12-2026", time: "14:55", team1: "الترجي", team2: "الريان", venue: "ملعب نادي الصفا (صفوى)" },
+            { id: 198, round: 14, dateStr: "الجمعة 25-12-2026", time: "14:55", team1: "الساحل", team2: "القلعة", venue: "ملعب نادي الصفا (صفوى)" },
+            { id: 199, round: 14, dateStr: "الجمعة 25-12-2026", time: "14:55", team1: "مضر", team2: "عفيف", venue: "ملعب نادي الجبيل (الجبيل)" },
+            { id: 200, round: 14, dateStr: "الجمعة 25-12-2026", time: "15:00", team1: "النعيرية", team2: "عرعر", venue: "ملعب نادي النعيرية (النعيرية)" },
+            { id: 201, round: 14, dateStr: "الجمعة 25-12-2026", time: "15:10", team1: "الباطن", team2: "الغوطة", venue: "ملعب نادي الباطن (حفر الباطن)" },
+            { id: 202, round: 14, dateStr: "الجمعة 25-12-2026", time: "15:40", team1: "العين", team2: "وج", venue: "استاد مدينة الملك سعود بن عبدالعزيز الرياضية (الباحة)" },
+            { id: 203, round: 14, dateStr: "الجمعة 25-12-2026", time: "15:40", team1: "حطين", team2: "القوارة", venue: "استاد مدينة الملك فيصل الرياضية (جازان)" },
+            { id: 204, round: 14, dateStr: "الجمعة 25-12-2026", time: "15:40", team1: "بيش", team2: "الصفا", venue: "ملعب نادي بيش (بيش)" },
+            { id: 205, round: 14, dateStr: "السبت 26-12-2026", time: "15:00", team1: "الجبيل", team2: "الشعلة", venue: "ملعب نادي الجبيل (الجبيل)" },
+            { id: 206, round: 14, dateStr: "السبت 26-12-2026", time: "15:20", team1: "الوشم", team2: "الكوكب", venue: "ملعب نادي الوشم (شقراء)" },
+            { id: 207, round: 14, dateStr: "السبت 26-12-2026", time: "15:25", team1: "العربي", team2: "الروضة", venue: "ملعب نادي النجمة (عنيزة)" },
+            { id: 208, round: 14, dateStr: "السبت 26-12-2026", time: "15:25", team1: "اللواء", team2: "جبة", venue: "ملعب نادي اللواء (بقعاء)" },
+            { id: 209, round: 14, dateStr: "السبت 26-12-2026", time: "15:40", team1: "القوس", team2: "نجران", venue: "ملعب نادي القوس (الخرمة)" },
+            { id: 210, round: 14, dateStr: "السبت 26-12-2026", time: "15:40", team1: "جرش", team2: "الشرق", venue: "الملعب الرديف رقم (1) بمدينة الأمير سلطان بن عبدالعزيز الرياضية (أبها)" },
+            { id: 211, round: 14, dateStr: "السبت 26-12-2026", time: "15:50", team1: "الانتصار", team2: "قلوة", venue: "ملعب نادي الإنتصار (رابغ)" },
+            { id: 212, round: 14, dateStr: "الأحد 27-12-2026", time: "14:55", team1: "الهدى", team2: "النجوم", venue: "ملعب نادي الجبيل (الجبيل)" },
+
+            // الجولة 5
+            { id: 213, round: 5, dateStr: "الثلاثاء 29-12-2026", time: "15:15", team1: "الكوكب", team2: "جرش", venue: "ملعب نادي الشعلة (الخرج)" },
+
+            // الجولة 15
+            { id: 214, round: 15, dateStr: "الجمعة 01-01-2027", time: "15:00", team1: "الصفا", team2: "الباطن", venue: "ملعب نادي الترجي (القطيف)" },
+            { id: 215, round: 15, dateStr: "الجمعة 01-01-2027", time: "15:15", team1: "الشعلة", team2: "الانتصار", venue: "ملعب نادي الشعلة (الخرج)" },
+            { id: 216, round: 15, dateStr: "الجمعة 01-01-2027", time: "15:25", team1: "القوارة", team2: "مضر", venue: "ملعب نادي القوارة (القوارة)" },
+            { id: 217, round: 15, dateStr: "الجمعة 01-01-2027", time: "15:30", team1: "الريان", team2: "العين", venue: "ملعب نادي الجبلين (حائل)" },
+            { id: 218, round: 15, dateStr: "الجمعة 01-01-2027", time: "15:30", team1: "عرعر", team2: "الساحل", venue: "ملعب مدينة الأمير عبدالله بن عبدالعزيز بن مساعد (عرعر)" },
+            { id: 219, round: 15, dateStr: "الجمعة 01-01-2027", time: "15:30", team1: "الغوطة", team2: "النعيرية", venue: "ملعب نادي الغوطة (موقق)" },
+            { id: 220, round: 15, dateStr: "الجمعة 01-01-2027", time: "15:35", team1: "القلعة", team2: "بيش", venue: "استاد جامعة الجوف (الجوف)" },
+            { id: 221, round: 15, dateStr: "الجمعة 01-01-2027", time: "15:35", team1: "عفيف", team2: "الترجي", venue: "ملعب نادي عفيف (عفيف)" },
+            { id: 222, round: 15, dateStr: "الجمعة 01-01-2027", time: "15:50", team1: "وج", team2: "حطين", venue: "استاد مدينة الملك فهد الرياضية (الطائف)" },
+            { id: 223, round: 15, dateStr: "السبت 02-01-2027", time: "15:05", team1: "النجوم", team2: "العربي", venue: "رديف مدينة الأمير عبدالله بن جلوي الرياضية رقم (3) (الأحساء)" },
+            { id: 224, round: 15, dateStr: "السبت 02-01-2027", time: "15:05", team1: "الروضة", team2: "جرش", venue: "ملعب نادي الروضة (الأحساء)" },
+            { id: 225, round: 15, dateStr: "السبت 02-01-2027", time: "15:15", team1: "الشرق", team2: "اللواء", venue: "ملعب شركة التمدين الوطنية بنادي الشرق (الدلم)" },
+            { id: 226, round: 15, dateStr: "السبت 02-01-2027", time: "15:15", team1: "الكوكب", team2: "القوس", venue: "ملعب نادي الشعلة (الخرج)" },
+            { id: 227, round: 15, dateStr: "السبت 02-01-2027", time: "15:35", team1: "جبة", team2: "الهدى", venue: "ملعب نادي الطائي (حائل)" },
+            { id: 228, round: 15, dateStr: "السبت 02-01-2027", time: "15:40", team1: "نجران", team2: "الجبيل", venue: "ملعب ذيب بنادي نجران (نجران)" },
+            { id: 229, round: 15, dateStr: "السبت 02-01-2027", time: "15:50", team1: "قلوة", team2: "الوشم", venue: "ملعب نادي قلوة (قلوة)" },
+
+            // الجولة 2
+            { id: 230, round: 2, dateStr: "الثلاثاء 05-01-2027", time: "15:05", team1: "الصفا", team2: "حطين", venue: "ملعب نادي الترجي (القطيف)" },
+            { id: 231, round: 2, dateStr: "الأربعاء 06-01-2027", time: "15:05", team1: "مضر", team2: "الغوطة", venue: "ملعب نادي الترجي (القطيف)" },
+
+            // الجولة 3
+            { id: 232, round: 3, dateStr: "الجمعة 08-01-2027", time: "15:25", team1: "الوشم", team2: "جرش", venue: "ملعب نادي الوشم (شقراء)" },
+            { id: 233, round: 3, dateStr: "الأحد 10-01-2027", time: "15:20", team1: "الباطن", team2: "حطين", venue: "ملعب نادي الباطن (حفر الباطن)" },
+
+            // الجولة 1
+            { id: 234, round: 1, dateStr: "السبت 16-01-2027", time: "15:15", team1: "الروضة", team2: "نجران", venue: "ملعب نادي الروضة (الأحساء)" },
+            { id: 235, round: 1, dateStr: "السبت 16-01-2027", time: "15:45", team1: "عرعر", team2: "مضر", venue: "ملعب مدينة الأمير عبدالله بن عبدالعزيز بن مساعد (عرعر)" },
+            { id: 236, round: 1, dateStr: "السبت 16-01-2027", time: "15:45", team1: "القلعة", team2: "حطين", venue: "استاد جامعة الجوف (الجوف)" },
+
+            // الجولة 2
+            { id: 237, round: 2, dateStr: "السبت 16-01-2027", time: "15:45", team1: "الريان", team2: "النعيرية", venue: "ملعب نادي الجبلين (حائل)" },
+
+            // الجولة 1
+            { id: 238, round: 1, dateStr: "السبت 16-01-2027", time: "15:55", team1: "بيش", team2: "العين", venue: "ملعب نادي بيش (بيش)" },
+            { id: 239, round: 1, dateStr: "السبت 16-01-2027", time: "15:55", team1: "جرش", team2: "الشعلة", venue: "الملعب الرديف رقم (1) بمدينة الأمير سلطان بن عبدالعزيز الرياضية (أبها)" },
+
+            // الجولة 2
+            { id: 240, round: 2, dateStr: "السبت 16-01-2027", time: "15:55", team1: "قلوة", team2: "الهدى", venue: "ملعب نادي قلوة (قلوة)" },
+
+            // الجولة 16
+            { id: 241, round: 16, dateStr: "الخميس 21-01-2027", time: "15:15", team1: "الترجي", team2: "الساحل", venue: "ملعب نادي الترجي (القطيف)" },
+            { id: 242, round: 16, dateStr: "الخميس 21-01-2027", time: "15:15", team1: "مضر", team2: "عرعر", venue: "ملعب نادي الجبيل (الجبيل)" },
+            { id: 243, round: 16, dateStr: "الخميس 21-01-2027", time: "15:40", team1: "القوارة", team2: "الباطن", venue: "ملعب نادي القوارة (القوارة)" },
+            { id: 244, round: 16, dateStr: "الخميس 21-01-2027", time: "15:45", team1: "الريان", team2: "الغوطة", venue: "ملعب نادي الجبلين (حائل)" },
+            { id: 245, round: 16, dateStr: "الخميس 21-01-2027", time: "15:45", team1: "عفيف", team2: "الصفا", venue: "ملعب نادي عفيف (عفيف)" },
+            { id: 246, round: 16, dateStr: "الخميس 21-01-2027", time: "15:55", team1: "حطين", team2: "القلعة", venue: "استاد مدينة الملك فيصل الرياضية (جازان)" },
+            { id: 247, round: 16, dateStr: "الخميس 21-01-2027", time: "16:00", team1: "العين", team2: "بيش", venue: "استاد مدينة الملك سعود بن عبدالعزيز الرياضية (الباحة)" },
+            { id: 248, round: 16, dateStr: "الخميس 21-01-2027", time: "16:00", team1: "وج", team2: "النعيرية", venue: "استاد مدينة الملك فهد الرياضية (الطائف)" },
+            { id: 249, round: 16, dateStr: "الجمعة 22-01-2027", time: "15:15", team1: "الجبيل", team2: "الهدى", venue: "ملعب نادي الجبيل (الجبيل)" },
+            { id: 250, round: 16, dateStr: "الجمعة 22-01-2027", time: "15:30", team1: "الشعلة", team2: "جرش", venue: "ملعب نادي الشعلة (الخرج)" },
+            { id: 251, round: 16, dateStr: "الجمعة 22-01-2027", time: "15:35", team1: "الوشم", team2: "الشرق", venue: "ملعب نادي الوشم (شقراء)" },
+            { id: 252, round: 16, dateStr: "الجمعة 22-01-2027", time: "15:50", team1: "نجران", team2: "الروضة", venue: "ملعب ذيب بنادي نجران (نجران)" },
+            { id: 253, round: 16, dateStr: "الجمعة 22-01-2027", time: "15:55", team1: "القوس", team2: "اللواء", venue: "ملعب نادي القوس (الخرمة)" },
+            { id: 254, round: 16, dateStr: "الجمعة 22-01-2027", time: "16:00", team1: "قلوة", team2: "العربي", venue: "ملعب نادي قلوة (قلوة)" },
+            { id: 255, round: 16, dateStr: "الجمعة 22-01-2027", time: "16:05", team1: "الانتصار", team2: "جبة", venue: "ملعب نادي الإنتصار (رابغ)" },
+            { id: 256, round: 16, dateStr: "السبت 23-01-2027", time: "15:30", team1: "الكوكب", team2: "النجوم", venue: "ملعب نادي الشعلة (الخرج)" },
+
+            // الجولة 17
+            { id: 257, round: 17, dateStr: "الخميس 28-01-2027", time: "15:20", team1: "الساحل", team2: "وج", venue: "ملعب نادي الجبيل (الجبيل)" },
+            { id: 258, round: 17, dateStr: "الخميس 28-01-2027", time: "15:25", team1: "النعيرية", team2: "الريان", venue: "ملعب نادي النعيرية (النعيرية)" },
+            { id: 259, round: 17, dateStr: "الخميس 28-01-2027", time: "15:30", team1: "الباطن", team2: "عفيف", venue: "ملعب نادي الباطن (حفر الباطن)" },
+            { id: 260, round: 17, dateStr: "الخميس 28-01-2027", time: "15:45", team1: "الغوطة", team2: "مضر", venue: "ملعب نادي الغوطة (موقق)" },
+            { id: 261, round: 17, dateStr: "الخميس 28-01-2027", time: "15:50", team1: "عرعر", team2: "الترجي", venue: "ملعب مدينة الأمير عبدالله بن عبدالعزيز بن مساعد (عرعر)" },
+            { id: 262, round: 17, dateStr: "الخميس 28-01-2027", time: "15:55", team1: "القلعة", team2: "العين", venue: "استاد جامعة الجوف (الجوف)" },
+            { id: 263, round: 17, dateStr: "الخميس 28-01-2027", time: "16:00", team1: "حطين", team2: "الصفا", venue: "استاد مدينة الملك فيصل الرياضية (جازان)" },
+            { id: 264, round: 17, dateStr: "الخميس 28-01-2027", time: "16:00", team1: "بيش", team2: "القوارة", venue: "ملعب نادي بيش (بيش)" },
+            { id: 265, round: 17, dateStr: "الجمعة 29-01-2027", time: "15:20", team1: "الهدى", team2: "قلوة", venue: "ملعب نادي الجبيل (الجبيل)" },
+            { id: 266, round: 17, dateStr: "الجمعة 29-01-2027", time: "15:25", team1: "الروضة", team2: "الوشم", venue: "ملعب نادي الروضة (الأحساء)" },
+            { id: 267, round: 17, dateStr: "الجمعة 29-01-2027", time: "15:25", team1: "النجوم", team2: "الانتصار", venue: "رديف مدينة الأمير عبدالله بن جلوي الرياضية رقم (3) (الأحساء)" },
+            { id: 268, round: 17, dateStr: "الجمعة 29-01-2027", time: "15:35", team1: "الشرق", team2: "القوس", venue: "ملعب شركة التمدين الوطنية بنادي الشرق (الدلم)" },
+            { id: 269, round: 17, dateStr: "الجمعة 29-01-2027", time: "15:45", team1: "العربي", team2: "الكوكب", venue: "ملعب إدارة التعليم (عنيزة)" },
+            { id: 270, round: 17, dateStr: "الجمعة 29-01-2027", time: "15:50", team1: "جبة", team2: "الجبيل", venue: "ملعب نادي الطائي (حائل)" },
+            { id: 271, round: 17, dateStr: "الجمعة 29-01-2027", time: "15:50", team1: "اللواء", team2: "الشعلة", venue: "ملعب نادي اللواء (بقعاء)" },
+            { id: 272, round: 17, dateStr: "الجمعة 29-01-2027", time: "15:50", team1: "نجران", team2: "جرش", venue: "ملعب ذيب بنادي نجران (نجران)" },
+
+            // الجولة 18
+            { id: 273, round: 18, dateStr: "الأربعاء 03-02-2027", time: "15:30", team1: "النعيرية", team2: "مضر", venue: "ملعب نادي النعيرية (النعيرية)" },
+            { id: 274, round: 18, dateStr: "الأربعاء 03-02-2027", time: "15:50", team1: "القوارة", team2: "القلعة", venue: "ملعب نادي القوارة (القوارة)" },
+            { id: 275, round: 18, dateStr: "الأربعاء 03-02-2027", time: "15:50", team1: "الغوطة", team2: "الترجي", venue: "ملعب نادي الغوطة (موقق)" },
+            { id: 276, round: 18, dateStr: "الأربعاء 03-02-2027", time: "15:55", team1: "الريان", team2: "الساحل", venue: "ملعب نادي الجبلين (حائل)" },
+            { id: 277, round: 18, dateStr: "الأربعاء 03-02-2027", time: "15:55", team1: "عفيف", team2: "بيش", venue: "ملعب نادي عفيف (عفيف)" },
+            { id: 278, round: 18, dateStr: "الأربعاء 03-02-2027", time: "16:00", team1: "حطين", team2: "الباطن", venue: "استاد مدينة الملك فيصل الرياضية (جازان)" },
+            { id: 279, round: 18, dateStr: "الأربعاء 03-02-2027", time: "16:05", team1: "العين", team2: "الصفا", venue: "استاد مدينة الملك سعود بن عبدالعزيز الرياضية (الباحة)" },
+            { id: 280, round: 18, dateStr: "الأربعاء 03-02-2027", time: "16:05", team1: "وج", team2: "عرعر", venue: "استاد مدينة الملك فهد الرياضية (الطائف)" },
+            { id: 281, round: 18, dateStr: "الخميس 04-02-2027", time: "15:25", team1: "الجبيل", team2: "النجوم", venue: "ملعب نادي الجبيل (الجبيل)" },
+            { id: 282, round: 18, dateStr: "الخميس 04-02-2027", time: "15:25", team1: "الروضة", team2: "القوس", venue: "ملعب نادي الروضة (الأحساء)" },
+            { id: 283, round: 18, dateStr: "الخميس 04-02-2027", time: "15:35", team1: "الكوكب", team2: "الهدى", venue: "ملعب نادي الشعلة (الخرج)" },
+            { id: 284, round: 18, dateStr: "الخميس 04-02-2027", time: "15:55", team1: "نجران", team2: "اللواء", venue: "ملعب ذيب بنادي نجران (نجران)" },
+            { id: 285, round: 18, dateStr: "الخميس 04-02-2027", time: "16:00", team1: "جرش", team2: "الوشم", venue: "الملعب الرديف رقم (1) بمدينة الأمير سلطان بن عبدالعزيز الرياضية (أبها)" },
+            { id: 286, round: 18, dateStr: "الخميس 04-02-2027", time: "16:05", team1: "قلوة", team2: "جبة", venue: "ملعب نادي قلوة (قلوة)" },
+            { id: 287, round: 18, dateStr: "الخميس 04-02-2027", time: "16:10", team1: "الانتصار", team2: "العربي", venue: "ملعب نادي الإنتصار (رابغ)" },
+            { id: 288, round: 18, dateStr: "الجمعة 05-02-2027", time: "15:35", team1: "الشعلة", team2: "الشرق", venue: "ملعب نادي الشعلة (الخرج)" },
+
+            // الجولة 19
+            { id: 289, round: 19, dateStr: "الأربعاء 10-02-2027", time: "22:00", team1: "الباطن", team2: "القلعة", venue: "ملعب نادي الباطن (حفر الباطن)" },
+            { id: 290, round: 19, dateStr: "الأربعاء 10-02-2027", time: "22:00", team1: "العين", team2: "عفيف", venue: "استاد مدينة الملك سعود بن عبدالعزيز الرياضية (الباحة)" },
+            { id: 291, round: 19, dateStr: "الأربعاء 10-02-2027", time: "22:00", team1: "الساحل", team2: "الغوطة", venue: "ملعب مدينة الأمير سعود بن جلوي الرياضية (الخبر)" },
+            { id: 292, round: 19, dateStr: "الأربعاء 10-02-2027", time: "22:00", team1: "مضر", team2: "وج", venue: "ملعب مدينة الأمير نايف بن عبدالعزيز الرياضية (القطيف)" },
+            { id: 293, round: 19, dateStr: "الأربعاء 10-02-2027", time: "22:00", team1: "الريان", team2: "عرعر", venue: "ملعب نادي الجبلين (حائل)" },
+            { id: 294, round: 19, dateStr: "الأربعاء 10-02-2027", time: "22:00", team1: "الترجي", team2: "النعيرية", venue: "ملعب نادي الترجي (القطيف)" },
+            { id: 295, round: 19, dateStr: "الأربعاء 10-02-2027", time: "22:00", team1: "حطين", team2: "بيش", venue: "استاد مدينة الملك فيصل الرياضية (جازان)" },
+            { id: 296, round: 19, dateStr: "الأربعاء 10-02-2027", time: "22:00", team1: "الصفا", team2: "القوارة", venue: "ملعب نادي الصفا (صفوى)" },
+            { id: 297, round: 19, dateStr: "الخميس 11-02-2027", time: "22:00", team1: "العربي", team2: "جبة", venue: "ملعب إدارة التعليم (عنيزة)" },
+            { id: 298, round: 19, dateStr: "الخميس 11-02-2027", time: "22:00", team1: "الجبيل", team2: "الكوكب", venue: "ملعب نادي الجبيل (الجبيل)" },
+            { id: 299, round: 19, dateStr: "الخميس 11-02-2027", time: "22:00", team1: "اللواء", team2: "الروضة", venue: "ملعب نادي اللواء (بقعاء)" },
+            { id: 300, round: 19, dateStr: "الخميس 11-02-2027", time: "22:00", team1: "الوشم", team2: "الشعلة", venue: "ملعب نادي الوشم (شقراء)" },
+            { id: 301, round: 19, dateStr: "الخميس 11-02-2027", time: "22:00", team1: "نجران", team2: "الشرق", venue: "ملعب مدينة الأمير هذلول بن عبدالعزيز الرياضية (نجران)" },
+            { id: 302, round: 19, dateStr: "الخميس 11-02-2027", time: "22:00", team1: "القوس", team2: "جرش", venue: "ملعب نادي القوس (الخرمة)" },
+            { id: 303, round: 19, dateStr: "الخميس 11-02-2027", time: "22:00", team1: "الانتصار", team2: "الهدى", venue: "ملعب نادي الإنتصار (رابغ)" },
+            { id: 304, round: 19, dateStr: "الخميس 11-02-2027", time: "22:00", team1: "النجوم", team2: "قلوة", venue: "رديف مدينة الأمير عبدالله بن جلوي الرياضية رقم (3) (الأحساء)" },
+
+            // الجولة 20
+            { id: 305, round: 20, dateStr: "الاثنين 15-02-2027", time: "22:00", team1: "الباطن", team2: "الترجي", venue: "ملعب نادي الباطن (حفر الباطن)" },
+            { id: 306, round: 20, dateStr: "الاثنين 15-02-2027", time: "22:00", team1: "عرعر", team2: "العين", venue: "ملعب مدينة الأمير عبدالله بن عبدالعزيز بن مساعد (عرعر)" },
+            { id: 307, round: 20, dateStr: "الاثنين 15-02-2027", time: "22:00", team1: "القوارة", team2: "الساحل", venue: "ملعب نادي القوارة (القوارة)" },
+            { id: 308, round: 20, dateStr: "الاثنين 15-02-2027", time: "22:00", team1: "بيش", team2: "مضر", venue: "ملعب نادي بيش (بيش)" },
+            { id: 309, round: 20, dateStr: "الاثنين 15-02-2027", time: "22:00", team1: "القلعة", team2: "الريان", venue: "استاد جامعة الجوف (الجوف)" },
+            { id: 310, round: 20, dateStr: "الاثنين 15-02-2027", time: "22:00", team1: "النعيرية", team2: "عفيف", venue: "ملعب نادي النعيرية (النعيرية)" },
+            { id: 311, round: 20, dateStr: "الاثنين 15-02-2027", time: "22:00", team1: "الغوطة", team2: "حطين", venue: "ملعب نادي الغوطة (موقق)" },
+            { id: 312, round: 20, dateStr: "الاثنين 15-02-2027", time: "22:00", team1: "وج", team2: "الصفا", venue: "استاد مدينة الملك فهد الرياضية (الطائف)" },
+            { id: 313, round: 20, dateStr: "الثلاثاء 16-02-2027", time: "22:00", team1: "العربي", team2: "القوس", venue: "ملعب إدارة التعليم (عنيزة)" },
+            { id: 314, round: 20, dateStr: "الثلاثاء 16-02-2027", time: "22:00", team1: "الشرق", team2: "الجبيل", venue: "ملعب شركة التمدين الوطنية بنادي الشرق (الدلم)" },
+            { id: 315, round: 20, dateStr: "الثلاثاء 16-02-2027", time: "22:00", team1: "قلوة", team2: "اللواء", venue: "ملعب نادي قلوة (قلوة)" },
+            { id: 316, round: 20, dateStr: "الثلاثاء 16-02-2027", time: "22:00", team1: "الهدى", team2: "الوشم", venue: "ملعب مدينة الأمير سعود بن جلوي الرياضية (الخبر)" },
+            { id: 317, round: 20, dateStr: "الثلاثاء 16-02-2027", time: "22:00", team1: "جبة", team2: "نجران", venue: "ملعب نادي الطائي (حائل)" },
+            { id: 318, round: 20, dateStr: "الثلاثاء 16-02-2027", time: "22:00", team1: "جرش", team2: "الكوكب", venue: "الملعب الرديف رقم (1) بمدينة الأمير سلطان بن عبدالعزيز الرياضية (أبها)" },
+            { id: 319, round: 20, dateStr: "الثلاثاء 16-02-2027", time: "22:00", team1: "الروضة", team2: "الانتصار", venue: "ملعب نادي الروضة (الأحساء)" },
+            { id: 320, round: 20, dateStr: "الثلاثاء 16-02-2027", time: "22:00", team1: "الشعلة", team2: "النجوم", venue: "ملعب نادي الشعلة (الخرج)" },
+
+            // الجولة 21
+            { id: 321, round: 21, dateStr: "السبت 20-02-2027", time: "22:00", team1: "العين", team2: "الباطن", venue: "استاد مدينة الملك سعود بن عبدالعزيز الرياضية (الباحة)" },
+            { id: 322, round: 21, dateStr: "السبت 20-02-2027", time: "22:00", team1: "الساحل", team2: "مضر", venue: "ملعب مدينة الأمير سعود بن جلوي الرياضية (الخبر)" },
+            { id: 323, round: 21, dateStr: "السبت 20-02-2027", time: "22:00", team1: "الصفا", team2: "الريان", venue: "ملعب نادي الصفا (صفوى)" },
+            { id: 324, round: 21, dateStr: "السبت 20-02-2027", time: "22:00", team1: "حطين", team2: "النعيرية", venue: "استاد مدينة الملك فيصل الرياضية (جازان)" },
+            { id: 325, round: 21, dateStr: "السبت 20-02-2027", time: "22:00", team1: "عفيف", team2: "القلعة", venue: "ملعب نادي عفيف (عفيف)" },
+            { id: 326, round: 21, dateStr: "السبت 20-02-2027", time: "22:00", team1: "وج", team2: "الغوطة", venue: "استاد مدينة الملك فهد الرياضية (الطائف)" },
+            { id: 327, round: 21, dateStr: "السبت 20-02-2027", time: "22:00", team1: "الترجي", team2: "القوارة", venue: "ملعب نادي الترجي (القطيف)" },
+            { id: 328, round: 21, dateStr: "السبت 20-02-2027", time: "22:00", team1: "عرعر", team2: "بيش", venue: "ملعب مدينة الأمير عبدالله بن عبدالعزيز بن مساعد (عرعر)" },
+            { id: 329, round: 21, dateStr: "السبت 20-02-2027", time: "22:00", team1: "الشعلة", team2: "الروضة", venue: "ملعب نادي الشعلة (الخرج)" },
+            { id: 330, round: 21, dateStr: "الأحد 21-02-2027", time: "22:00", team1: "الجبيل", team2: "العربي", venue: "ملعب نادي الجبيل (الجبيل)" },
+            { id: 331, round: 21, dateStr: "الأحد 21-02-2027", time: "22:00", team1: "اللواء", team2: "الوشم", venue: "ملعب نادي اللواء (بقعاء)" },
+            { id: 332, round: 21, dateStr: "الأحد 21-02-2027", time: "22:00", team1: "النجوم", team2: "نجران", venue: "رديف مدينة الأمير عبدالله بن جلوي الرياضية رقم (3) (الأحساء)" },
+            { id: 333, round: 21, dateStr: "الأحد 21-02-2027", time: "22:00", team1: "الانتصار", team2: "جرش", venue: "ملعب نادي الإنتصار (رابغ)" },
+            { id: 334, round: 21, dateStr: "الأحد 21-02-2027", time: "22:00", team1: "الكوكب", team2: "جبة", venue: "ملعب نادي الشعلة (الخرج)" },
+            { id: 335, round: 21, dateStr: "الأحد 21-02-2027", time: "22:00", team1: "القوس", team2: "قلوة", venue: "ملعب نادي القوس (الخرمة)" },
+            { id: 336, round: 21, dateStr: "الأحد 21-02-2027", time: "22:00", team1: "الشرق", team2: "الهدى", venue: "ملعب شركة التمدين الوطنية بنادي الشرق (الدلم)" },
+
+            // الجولة 22
+            { id: 337, round: 22, dateStr: "الخميس 25-02-2027", time: "22:00", team1: "بيش", team2: "الباطن", venue: "ملعب نادي بيش (بيش)" },
+            { id: 338, round: 22, dateStr: "الخميس 25-02-2027", time: "22:00", team1: "الترجي", team2: "العين", venue: "ملعب نادي الترجي (القطيف)" },
+            { id: 339, round: 22, dateStr: "الخميس 25-02-2027", time: "22:00", team1: "الساحل", team2: "النعيرية", venue: "ملعب مدينة الأمير سعود بن جلوي الرياضية (الخبر)" },
+            { id: 340, round: 22, dateStr: "الخميس 25-02-2027", time: "22:00", team1: "مضر", team2: "حطين", venue: "ملعب مدينة الأمير نايف بن عبدالعزيز الرياضية (القطيف)" },
+            { id: 341, round: 22, dateStr: "الخميس 25-02-2027", time: "22:00", team1: "الريان", team2: "عفيف", venue: "ملعب نادي الجبلين (حائل)" },
+            { id: 342, round: 22, dateStr: "الخميس 25-02-2027", time: "22:00", team1: "القلعة", team2: "الصفا", venue: "استاد جامعة الجوف (الجوف)" },
+            { id: 343, round: 22, dateStr: "الخميس 25-02-2027", time: "22:00", team1: "الغوطة", team2: "عرعر", venue: "ملعب نادي الغوطة (موقق)" },
+            { id: 344, round: 22, dateStr: "الخميس 25-02-2027", time: "22:00", team1: "القوارة", team2: "وج", venue: "ملعب نادي القوارة (القوارة)" },
+            { id: 345, round: 22, dateStr: "الجمعة 26-02-2027", time: "22:00", team1: "الهدى", team2: "العربي", venue: "ملعب مدينة الأمير سعود بن جلوي الرياضية (الخبر)" },
+            { id: 346, round: 22, dateStr: "الجمعة 26-02-2027", time: "22:00", team1: "القوس", team2: "الجبيل", venue: "ملعب نادي القوس (الخرمة)" },
+            { id: 347, round: 22, dateStr: "الجمعة 26-02-2027", time: "22:00", team1: "اللواء", team2: "جرش", venue: "ملعب نادي اللواء (بقعاء)" },
+            { id: 348, round: 22, dateStr: "الجمعة 26-02-2027", time: "22:00", team1: "الوشم", team2: "الانتصار", venue: "ملعب نادي الوشم (شقراء)" },
+            { id: 349, round: 22, dateStr: "الجمعة 26-02-2027", time: "22:00", team1: "نجران", team2: "الكوكب", venue: "ملعب مدينة الأمير هذلول بن عبدالعزيز الرياضية (نجران)" },
+            { id: 350, round: 22, dateStr: "الجمعة 26-02-2027", time: "22:00", team1: "جبة", team2: "النجوم", venue: "ملعب نادي الطائي (حائل)" },
+            { id: 351, round: 22, dateStr: "الجمعة 26-02-2027", time: "22:00", team1: "الروضة", team2: "الشرق", venue: "ملعب نادي الروضة (الأحساء)" },
+            { id: 352, round: 22, dateStr: "الجمعة 26-02-2027", time: "22:00", team1: "قلوة", team2: "الشعلة", venue: "ملعب نادي قلوة (قلوة)" },
+
+            // الجولة 23
+            { id: 353, round: 23, dateStr: "الأربعاء 03-03-2027", time: "22:00", team1: "الباطن", team2: "مضر", venue: "ملعب نادي الباطن (حفر الباطن)" },
+            { id: 354, round: 23, dateStr: "الأربعاء 03-03-2027", time: "22:00", team1: "الغوطة", team2: "العين", venue: "ملعب نادي الغوطة (موقق)" },
+            { id: 355, round: 23, dateStr: "الأربعاء 03-03-2027", time: "22:00", team1: "عفيف", team2: "الساحل", venue: "ملعب نادي عفيف (عفيف)" },
+            { id: 356, round: 23, dateStr: "الأربعاء 03-03-2027", time: "22:00", team1: "الريان", team2: "بيش", venue: "ملعب نادي الجبلين (حائل)" },
+            { id: 357, round: 23, dateStr: "الأربعاء 03-03-2027", time: "22:00", team1: "النعيرية", team2: "القوارة", venue: "ملعب نادي النعيرية (النعيرية)" },
+            { id: 358, round: 23, dateStr: "الأربعاء 03-03-2027", time: "22:00", team1: "عرعر", team2: "حطين", venue: "ملعب مدينة الأمير عبدالله بن عبدالعزيز بن مساعد (عرعر)" },
+            { id: 359, round: 23, dateStr: "الأربعاء 03-03-2027", time: "22:00", team1: "الصفا", team2: "الترجي", venue: "ملعب نادي الصفا (صفوى)" },
+            { id: 360, round: 23, dateStr: "الأربعاء 03-03-2027", time: "22:00", team1: "القلعة", team2: "وج", venue: "استاد جامعة الجوف (الجوف)" },
+            { id: 361, round: 23, dateStr: "الخميس 04-03-2027", time: "22:00", team1: "العربي", team2: "الوشم", venue: "ملعب إدارة التعليم (عنيزة)" },
+            { id: 362, round: 23, dateStr: "الخميس 04-03-2027", time: "22:00", team1: "الروضة", team2: "الجبيل", venue: "ملعب نادي الروضة (الأحساء)" },
+            { id: 363, round: 23, dateStr: "الخميس 04-03-2027", time: "22:00", team1: "الكوكب", team2: "اللواء", venue: "ملعب نادي الشعلة (الخرج)" },
+            { id: 364, round: 23, dateStr: "الخميس 04-03-2027", time: "22:00", team1: "نجران", team2: "الهدى", venue: "ملعب مدينة الأمير هذلول بن عبدالعزيز الرياضية (نجران)" },
+            { id: 365, round: 23, dateStr: "الخميس 04-03-2027", time: "22:00", team1: "جرش", team2: "قلوة", venue: "الملعب الرديف رقم (1) بمدينة الأمير سلطان بن عبدالعزيز الرياضية (أبها)" },
+            { id: 366, round: 23, dateStr: "الخميس 04-03-2027", time: "22:00", team1: "الشرق", team2: "الانتصار", venue: "ملعب شركة التمدين الوطنية بنادي الشرق (الدلم)" },
+            { id: 367, round: 23, dateStr: "الخميس 04-03-2027", time: "22:00", team1: "النجوم", team2: "القوس", venue: "رديف مدينة الأمير عبدالله بن جلوي الرياضية رقم (3) (الأحساء)" },
+            { id: 368, round: 23, dateStr: "الخميس 04-03-2027", time: "22:00", team1: "جبة", team2: "الشعلة", venue: "ملعب نادي الطائي (حائل)" },
+
+            // الجولة 24
+            { id: 369, round: 24, dateStr: "الجمعة 19-03-2027", time: "15:35", team1: "مضر", team2: "الصفا", venue: "ملعب مدينة الأمير نايف بن عبدالعزيز الرياضية (القطيف)" },
+            { id: 370, round: 24, dateStr: "الجمعة 19-03-2027", time: "15:50", team1: "الباطن", team2: "الريان", venue: "ملعب نادي الباطن (حفر الباطن)" },
+            { id: 371, round: 24, dateStr: "الجمعة 19-03-2027", time: "16:00", team1: "حطين", team2: "الساحل", venue: "استاد مدينة الملك فيصل الرياضية (جازان)" },
+            { id: 372, round: 24, dateStr: "الجمعة 19-03-2027", time: "16:00", team1: "القوارة", team2: "الغوطة", venue: "ملعب نادي القوارة (القوارة)" },
+            { id: 373, round: 24, dateStr: "الجمعة 19-03-2027", time: "16:05", team1: "العين", team2: "النعيرية", venue: "استاد مدينة الملك سعود بن عبدالعزيز الرياضية (الباحة)" },
+            { id: 374, round: 24, dateStr: "الجمعة 19-03-2027", time: "16:05", team1: "عفيف", team2: "عرعر", venue: "ملعب نادي عفيف (عفيف)" },
+            { id: 375, round: 24, dateStr: "الجمعة 19-03-2027", time: "16:10", team1: "وج", team2: "بيش", venue: "استاد مدينة الملك فهد الرياضية (الطائف)" },
+            { id: 376, round: 24, dateStr: "السبت 20-03-2027", time: "15:35", team1: "الجبيل", team2: "جرش", venue: "ملعب نادي الجبيل (الجبيل)" },
+            { id: 377, round: 24, dateStr: "السبت 20-03-2027", time: "15:45", team1: "الشعلة", team2: "الهدى", venue: "ملعب نادي الشعلة (الخرج)" },
+            { id: 378, round: 24, dateStr: "السبت 20-03-2027", time: "15:55", team1: "الوشم", team2: "النجوم", venue: "ملعب نادي الوشم (شقراء)" },
+            { id: 379, round: 24, dateStr: "السبت 20-03-2027", time: "16:00", team1: "العربي", team2: "نجران", venue: "ملعب إدارة التعليم (عنيزة)" },
+            { id: 380, round: 24, dateStr: "السبت 20-03-2027", time: "16:05", team1: "القوس", team2: "جبة", venue: "ملعب نادي القوس (الخرمة)" },
+            { id: 381, round: 24, dateStr: "السبت 20-03-2027", time: "16:10", team1: "قلوة", team2: "الروضة", venue: "ملعب نادي قلوة (قلوة)" },
+            { id: 382, round: 24, dateStr: "السبت 20-03-2027", time: "16:20", team1: "الانتصار", team2: "اللواء", venue: "ملعب نادي الإنتصار (رابغ)" },
+            { id: 383, round: 24, dateStr: "الأحد 21-03-2027", time: "15:35", team1: "الترجي", team2: "القلعة", venue: "ملعب نادي الترجي (القطيف)" },
+            { id: 384, round: 24, dateStr: "الأحد 21-03-2027", time: "15:45", team1: "الكوكب", team2: "الشرق", venue: "ملعب نادي الشعلة (الخرج)" },
+
+            // الجولة 25
+            { id: 385, round: 25, dateStr: "الجمعة 26-03-2027", time: "15:35", team1: "الساحل", team2: "العين", venue: "ملعب مدينة الأمير سعود بن جلوي الرياضية (الخبر)" },
+            { id: 386, round: 25, dateStr: "الجمعة 26-03-2027", time: "15:35", team1: "مضر", team2: "القلعة", venue: "ملعب مدينة الأمير نايف بن عبدالعزيز الرياضية (القطيف)" },
+            { id: 387, round: 25, dateStr: "الجمعة 26-03-2027", time: "15:40", team1: "النعيرية", team2: "الصفا", venue: "ملعب نادي النعيرية (النعيرية)" },
+            { id: 388, round: 25, dateStr: "الجمعة 26-03-2027", time: "16:00", team1: "حطين", team2: "الريان", venue: "استاد مدينة الملك فيصل الرياضية (جازان)" },
+            { id: 389, round: 25, dateStr: "الجمعة 26-03-2027", time: "16:00", team1: "بيش", team2: "الترجي", venue: "ملعب نادي بيش (بيش)" },
+            { id: 390, round: 25, dateStr: "الجمعة 26-03-2027", time: "16:05", team1: "الغوطة", team2: "عفيف", venue: "ملعب نادي الغوطة (موقق)" },
+            { id: 391, round: 25, dateStr: "الجمعة 26-03-2027", time: "16:10", team1: "وج", team2: "الباطن", venue: "استاد مدينة الملك فهد الرياضية (الطائف)" },
+            { id: 392, round: 25, dateStr: "الجمعة 26-03-2027", time: "16:15", team1: "عرعر", team2: "القوارة", venue: "ملعب مدينة الأمير عبدالله بن عبدالعزيز بن مساعد (عرعر)" },
+            { id: 393, round: 25, dateStr: "السبت 27-03-2027", time: "15:35", team1: "الروضة", team2: "الكوكب", venue: "ملعب نادي الروضة (الأحساء)" },
+            { id: 394, round: 25, dateStr: "السبت 27-03-2027", time: "15:35", team1: "الهدى", team2: "القوس", venue: "ملعب مدينة الأمير سعود بن جلوي الرياضية (الخبر)" },
+            { id: 395, round: 25, dateStr: "السبت 27-03-2027", time: "15:45", team1: "الشعلة", team2: "العربي", venue: "ملعب نادي الشعلة (الخرج)" },
+            { id: 396, round: 25, dateStr: "السبت 27-03-2027", time: "15:45", team1: "الشرق", team2: "قلوة", venue: "ملعب شركة التمدين الوطنية بنادي الشرق (الدلم)" },
+            { id: 397, round: 25, dateStr: "السبت 27-03-2027", time: "15:55", team1: "الوشم", team2: "جبة", venue: "ملعب نادي الوشم (شقراء)" },
+            { id: 398, round: 25, dateStr: "السبت 27-03-2027", time: "16:00", team1: "جرش", team2: "النجوم", venue: "الملعب الرديف رقم (1) بمدينة الأمير سلطان بن عبدالعزيز الرياضية (أبها)" },
+            { id: 399, round: 25, dateStr: "السبت 27-03-2027", time: "16:05", team1: "اللواء", team2: "الجبيل", venue: "ملعب نادي اللواء (بقعاء)" },
+            { id: 400, round: 25, dateStr: "السبت 27-03-2027", time: "16:15", team1: "الانتصار", team2: "نجران", venue: "ملعب نادي الإنتصار (رابغ)" },
+
+            // الجولة 26
+            { id: 401, round: 26, dateStr: "الأربعاء 31-03-2027", time: "15:35", team1: "الترجي", team2: "مضر", venue: "ملعب نادي الترجي (القطيف)" },
+            { id: 402, round: 26, dateStr: "الأربعاء 31-03-2027", time: "15:35", team1: "الصفا", team2: "الغوطة", venue: "ملعب نادي الصفا (صفوى)" },
+            { id: 403, round: 26, dateStr: "الأربعاء 31-03-2027", time: "15:50", team1: "الباطن", team2: "النعيرية", venue: "ملعب نادي الباطن (حفر الباطن)" },
+            { id: 404, round: 26, dateStr: "الأربعاء 31-03-2027", time: "15:55", team1: "بيش", team2: "الساحل", venue: "ملعب نادي بيش (بيش)" },
+            { id: 405, round: 26, dateStr: "الأربعاء 31-03-2027", time: "16:00", team1: "عفيف", team2: "القوارة", venue: "ملعب نادي عفيف (عفيف)" },
+            { id: 406, round: 26, dateStr: "الأربعاء 31-03-2027", time: "16:05", team1: "العين", team2: "حطين", venue: "استاد مدينة الملك سعود بن عبدالعزيز الرياضية (الباحة)" },
+            { id: 407, round: 26, dateStr: "الأربعاء 31-03-2027", time: "16:10", team1: "الريان", team2: "وج", venue: "ملعب نادي الجبلين (حائل)" },
+            { id: 408, round: 26, dateStr: "الأربعاء 31-03-2027", time: "16:15", team1: "القلعة", team2: "عرعر", venue: "استاد جامعة الجوف (الجوف)" },
+            { id: 409, round: 26, dateStr: "الخميس 01-04-2027", time: "15:35", team1: "الجبيل", team2: "الانتصار", venue: "ملعب نادي الجبيل (الجبيل)" },
+            { id: 410, round: 26, dateStr: "الخميس 01-04-2027", time: "15:35", team1: "الهدى", team2: "اللواء", venue: "ملعب مدينة الأمير نايف بن عبدالعزيز الرياضية (القطيف)" },
+            { id: 411, round: 26, dateStr: "الخميس 01-04-2027", time: "15:35", team1: "النجوم", team2: "الروضة", venue: "رديف مدينة الأمير عبدالله بن جلوي الرياضية رقم (3) (الأحساء)" },
+            { id: 412, round: 26, dateStr: "الخميس 01-04-2027", time: "15:45", team1: "الكوكب", team2: "قلوة", venue: "ملعب نادي الشعلة (الخرج)" },
+            { id: 413, round: 26, dateStr: "الخميس 01-04-2027", time: "15:50", team1: "نجران", team2: "الشعلة", venue: "ملعب مدينة الأمير هذلول بن عبدالعزيز الرياضية (نجران)" },
+            { id: 414, round: 26, dateStr: "الخميس 01-04-2027", time: "16:00", team1: "العربي", team2: "جرش", venue: "ملعب إدارة التعليم (عنيزة)" },
+            { id: 415, round: 26, dateStr: "الخميس 01-04-2027", time: "16:05", team1: "القوس", team2: "الوشم", venue: "ملعب نادي القوس (الخرمة)" },
+            { id: 416, round: 26, dateStr: "الخميس 01-04-2027", time: "16:10", team1: "جبة", team2: "الشرق", venue: "ملعب نادي الطائي (حائل)" },
+
+            // الجولة 27
+            { id: 417, round: 27, dateStr: "الاثنين 05-04-2027", time: "15:35", team1: "الساحل", team2: "الباطن", venue: "ملعب مدينة الأمير سعود بن جلوي الرياضية (الخبر)" },
+            { id: 418, round: 27, dateStr: "الاثنين 05-04-2027", time: "15:35", team1: "مضر", team2: "العين", venue: "ملعب مدينة الأمير نايف بن عبدالعزيز الرياضية (القطيف)" },
+            { id: 419, round: 27, dateStr: "الاثنين 05-04-2027", time: "15:40", team1: "النعيرية", team2: "بيش", venue: "ملعب نادي النعيرية (النعيرية)" },
+            { id: 420, round: 27, dateStr: "الاثنين 05-04-2027", time: "15:55", team1: "حطين", team2: "الترجي", venue: "استاد مدينة الملك فيصل الرياضية (جازان)" },
+            { id: 421, round: 27, dateStr: "الاثنين 05-04-2027", time: "16:00", team1: "القوارة", team2: "الريان", venue: "ملعب نادي القوارة (القوارة)" },
+            { id: 422, round: 27, dateStr: "الاثنين 05-04-2027", time: "16:05", team1: "الغوطة", team2: "القلعة", venue: "ملعب نادي الغوطة (موقق)" },
+            { id: 423, round: 27, dateStr: "الاثنين 05-04-2027", time: "16:10", team1: "وج", team2: "عفيف", venue: "استاد مدينة الملك فهد الرياضية (الطائف)" },
+            { id: 424, round: 27, dateStr: "الاثنين 05-04-2027", time: "16:15", team1: "عرعر", team2: "الصفا", venue: "ملعب مدينة الأمير عبدالله بن عبدالعزيز بن مساعد (عرعر)" },
+            { id: 425, round: 27, dateStr: "الثلاثاء 06-04-2027", time: "15:35", team1: "الروضة", team2: "جبة", venue: "ملعب نادي الروضة (الأحساء)" },
+            { id: 426, round: 27, dateStr: "الثلاثاء 06-04-2027", time: "15:45", team1: "الشرق", team2: "النجوم", venue: "ملعب شركة التمدين الوطنية بنادي الشرق (الدلم)" },
+            { id: 427, round: 27, dateStr: "الثلاثاء 06-04-2027", time: "15:45", team1: "الشعلة", team2: "الكوكب", venue: "ملعب نادي الشعلة (الخرج)" },
+            { id: 428, round: 27, dateStr: "الثلاثاء 06-04-2027", time: "15:50", team1: "الوشم", team2: "الجبيل", venue: "ملعب نادي الوشم (شقراء)" },
+            { id: 429, round: 27, dateStr: "الثلاثاء 06-04-2027", time: "15:55", team1: "جرش", team2: "الهدى", venue: "الملعب الرديف رقم (1) بمدينة الأمير سلطان بن عبدالعزيز الرياضية (أبها)" },
+            { id: 430, round: 27, dateStr: "الثلاثاء 06-04-2027", time: "16:00", team1: "قلوة", team2: "نجران", venue: "ملعب نادي قلوة (قلوة)" },
+            { id: 431, round: 27, dateStr: "الثلاثاء 06-04-2027", time: "16:05", team1: "اللواء", team2: "العربي", venue: "ملعب نادي اللواء (بقعاء)" },
+            { id: 432, round: 27, dateStr: "الثلاثاء 06-04-2027", time: "16:15", team1: "الانتصار", team2: "القوس", venue: "ملعب نادي الإنتصار (رابغ)" },
+
+            // الجولة 28
+            { id: 433, round: 28, dateStr: "السبت 10-04-2027", time: "15:35", team1: "الصفا", team2: "الساحل", venue: "ملعب نادي الصفا (صفوى)" },
+            { id: 434, round: 28, dateStr: "السبت 10-04-2027", time: "15:35", team1: "مضر", team2: "الريان", venue: "ملعب مدينة الأمير نايف بن عبدالعزيز الرياضية (القطيف)" },
+            { id: 435, round: 28, dateStr: "السبت 10-04-2027", time: "15:35", team1: "الترجي", team2: "وج", venue: "ملعب نادي الترجي (القطيف)" },
+            { id: 436, round: 28, dateStr: "السبت 10-04-2027", time: "15:50", team1: "الباطن", team2: "عرعر", venue: "ملعب نادي الباطن (حفر الباطن)" },
+            { id: 437, round: 28, dateStr: "السبت 10-04-2027", time: "15:50", team1: "بيش", team2: "الغوطة", venue: "ملعب نادي بيش (بيش)" },
+            { id: 438, round: 28, dateStr: "السبت 10-04-2027", time: "16:00", team1: "العين", team2: "القوارة", venue: "استاد مدينة الملك سعود بن عبدالعزيز الرياضية (الباحة)" },
+            { id: 439, round: 28, dateStr: "السبت 10-04-2027", time: "16:00", team1: "عفيف", team2: "حطين", venue: "ملعب نادي عفيف (عفيف)" },
+            { id: 440, round: 28, dateStr: "السبت 10-04-2027", time: "16:15", team1: "القلعة", team2: "النعيرية", venue: "استاد جامعة الجوف (الجوف)" },
+            { id: 441, round: 28, dateStr: "الأحد 11-04-2027", time: "15:35", team1: "الجبيل", team2: "قلوة", venue: "ملعب نادي الجبيل (الجبيل)" },
+            { id: 442, round: 28, dateStr: "الأحد 11-04-2027", time: "15:35", team1: "النجوم", team2: "اللواء", venue: "رديف مدينة الأمير عبدالله بن جلوي الرياضية رقم (3) (الأحساء)" },
+            { id: 443, round: 28, dateStr: "الأحد 11-04-2027", time: "15:35", team1: "الهدى", team2: "الروضة", venue: "ملعب مدينة الأمير سعود بن جلوي الرياضية (الخبر)" },
+            { id: 444, round: 28, dateStr: "الأحد 11-04-2027", time: "15:40", team1: "الكوكب", team2: "الانتصار", venue: "ملعب نادي الشعلة (الخرج)" },
+            { id: 445, round: 28, dateStr: "الأحد 11-04-2027", time: "15:50", team1: "الوشم", team2: "نجران", venue: "ملعب نادي الوشم (شقراء)" },
+            { id: 446, round: 28, dateStr: "الأحد 11-04-2027", time: "16:00", team1: "العربي", team2: "الشرق", venue: "ملعب إدارة التعليم (عنيزة)" },
+            { id: 447, round: 28, dateStr: "الأحد 11-04-2027", time: "16:00", team1: "القوس", team2: "الشعلة", venue: "ملعب نادي القوس (الخرمة)" },
+            { id: 448, round: 28, dateStr: "الأحد 11-04-2027", time: "16:05", team1: "جبة", team2: "جرش", venue: "ملعب نادي الطائي (حائل)" },
+
+            // الجولة 29
+            { id: 449, round: 29, dateStr: "الجمعة 16-04-2027", time: "15:45", team1: "عفيف", team2: "مضر", venue: "ملعب مدينة الأمير عبدالله بن عبدالعزيز بن مساعد (عرعر)" },
+            { id: 450, round: 29, dateStr: "الجمعة 16-04-2027", time: "16:15", team1: "الغوطة", team2: "الباطن", venue: "ملعب نادي الغوطة (موقق)" },
+            { id: 451, round: 29, dateStr: "الجمعة 16-04-2027", time: "16:15", team1: "وج", team2: "العين", venue: "استاد مدينة الملك فهد الرياضية (الطائف)" },
+            { id: 452, round: 29, dateStr: "الجمعة 16-04-2027", time: "16:15", team1: "القلعة", team2: "الساحل", venue: "استاد جامعة الجوف (الجوف)" },
+            { id: 453, round: 29, dateStr: "الجمعة 16-04-2027", time: "16:15", team1: "الريان", team2: "الترجي", venue: "ملعب نادي الجبلين (حائل)" },
+            { id: 454, round: 29, dateStr: "الجمعة 16-04-2027", time: "16:15", team1: "عرعر", team2: "النعيرية", venue: "ملعب مدينة الأمير عبدالله بن عبدالعزيز بن مساعد (عرعر)" },
+            { id: 455, round: 29, dateStr: "الجمعة 16-04-2027", time: "16:15", team1: "القوارة", team2: "حطين", venue: "ملعب نادي القوارة (القوارة)" },
+            { id: 456, round: 29, dateStr: "الجمعة 16-04-2027", time: "16:15", team1: "الصفا", team2: "بيش", venue: "ملعب نادي الصفا (صفوى)" },
+            { id: 457, round: 29, dateStr: "السبت 17-04-2027", time: "16:15", team1: "الروضة", team2: "العربي", venue: "ملعب نادي الروضة (الأحساء)" },
+            { id: 458, round: 29, dateStr: "السبت 17-04-2027", time: "16:15", team1: "الشعلة", team2: "الجبيل", venue: "ملعب نادي الشعلة (الخرج)" },
+            { id: 459, round: 29, dateStr: "السبت 17-04-2027", time: "16:15", team1: "جبة", team2: "اللواء", venue: "ملعب نادي الطائي (حائل)" },
+            { id: 460, round: 29, dateStr: "السبت 17-04-2027", time: "16:15", team1: "الكوكب", team2: "الوشم", venue: "ملعب نادي الأنوار (حوطة بني تميم)" },
+            { id: 461, round: 29, dateStr: "السبت 17-04-2027", time: "16:15", team1: "نجران", team2: "القوس", venue: "ملعب مدينة الأمير هذلول بن عبدالعزيز الرياضية (نجران)" },
+            { id: 462, round: 29, dateStr: "السبت 17-04-2027", time: "16:15", team1: "الشرق", team2: "جرش", venue: "ملعب شركة التمدين الوطنية بنادي الشرق (الدلم)" },
+            { id: 463, round: 29, dateStr: "السبت 17-04-2027", time: "16:15", team1: "قلوة", team2: "الانتصار", venue: "ملعب نادي قلوة (قلوة)" },
+            { id: 464, round: 29, dateStr: "السبت 17-04-2027", time: "16:15", team1: "النجوم", team2: "الهدى", venue: "رديف مدينة الأمير عبدالله بن جلوي الرياضية رقم (3) (الأحساء)" },
+
+            // الجولة 30
+            { id: 465, round: 30, dateStr: "الجمعة 23-04-2027", time: "16:15", team1: "الباطن", team2: "الصفا", venue: "ملعب نادي الباطن (حفر الباطن)" },
+            { id: 466, round: 30, dateStr: "الجمعة 23-04-2027", time: "16:15", team1: "العين", team2: "الريان", venue: "استاد مدينة الملك سعود بن عبدالعزيز الرياضية (الباحة)" },
+            { id: 467, round: 30, dateStr: "الجمعة 23-04-2027", time: "16:15", team1: "الساحل", team2: "عرعر", venue: "ملعب مدينة الأمير سعود بن جلوي الرياضية (الخبر)" },
+            { id: 468, round: 30, dateStr: "الجمعة 23-04-2027", time: "16:15", team1: "مضر", team2: "القوارة", venue: "ملعب مدينة الأمير نايف بن عبدالعزيز الرياضية (القطيف)" },
+            { id: 469, round: 30, dateStr: "الجمعة 23-04-2027", time: "16:15", team1: "النعيرية", team2: "الغوطة", venue: "ملعب نادي النعيرية (النعيرية)" },
+            { id: 470, round: 30, dateStr: "الجمعة 23-04-2027", time: "16:15", team1: "حطين", team2: "وج", venue: "استاد مدينة الملك فيصل الرياضية (جازان)" },
+            { id: 471, round: 30, dateStr: "الجمعة 23-04-2027", time: "16:15", team1: "بيش", team2: "القلعة", venue: "ملعب نادي بيش (بيش)" },
+            { id: 472, round: 30, dateStr: "الجمعة 23-04-2027", time: "16:15", team1: "الترجي", team2: "عفيف", venue: "ملعب نادي الترجي (القطيف)" },
+            { id: 473, round: 30, dateStr: "السبت 24-04-2027", time: "16:15", team1: "العربي", team2: "النجوم", venue: "ملعب إدارة التعليم (عنيزة)" },
+            { id: 474, round: 30, dateStr: "السبت 24-04-2027", time: "16:15", team1: "الجبيل", team2: "نجران", venue: "ملعب نادي الجبيل (الجبيل)" },
+            { id: 475, round: 30, dateStr: "السبت 24-04-2027", time: "16:15", team1: "اللواء", team2: "الشرق", venue: "ملعب نادي اللواء (بقعاء)" },
+            { id: 476, round: 30, dateStr: "السبت 24-04-2027", time: "16:15", team1: "الوشم", team2: "قلوة", venue: "ملعب نادي الوشم (شقراء)" },
+            { id: 477, round: 30, dateStr: "السبت 24-04-2027", time: "16:15", team1: "جرش", team2: "الروضة", venue: "الملعب الرديف رقم (1) بمدينة الأمير سلطان بن عبدالعزيز الرياضية (أبها)" },
+            { id: 478, round: 30, dateStr: "السبت 24-04-2027", time: "16:15", team1: "الانتصار", team2: "الشعلة", venue: "ملعب نادي الإنتصار (رابغ)" },
+            { id: 479, round: 30, dateStr: "السبت 24-04-2027", time: "16:15", team1: "الهدى", team2: "جبة", venue: "ملعب مدينة الأمير سعود بن جلوي الرياضية (الخبر)" },
+            { id: 480, round: 30, dateStr: "السبت 24-04-2027", time: "16:15", team1: "القوس", team2: "الكوكب", venue: "ملعب نادي القوس (الخرمة)" }
         ];
 
         // Process matches data with 12h time conversion
@@ -246,27 +765,6 @@
             time: convertTo12Hour(m.time)
         }));
 
-        // Generate remaining rounds up to 30
-        const sampleTeams = ["الترجي", "الساحل", "الصفا", "عفيف", "النعيرية", "وج", "الباطن", "القوارة", "الغوطة", "الريان", "الهدى", "الجبيل", "النجوم", "الكوكب", "الشرق", "الوشم", "العربي", "قلوة", "اللواء", "القوس", "جبة", "الانتصار", "عرعر", "بيش", "جرش", "نجران", "القلعة", "مضر", "العين", "حطين"];
-        for (let r = 4; r <= 30; r++) {
-            let baseDay = (r % 2 === 0) ? "الجمعة" : "السبت";
-            let baseDate = `0${(r % 9) + 1}-11-2026`;
-            for (let m = 0; m < 8; m++) {
-                let t1Idx = (r * 3 + m) % sampleTeams.length;
-                let t2Idx = (r * 5 + m + 2) % sampleTeams.length;
-                if (t1Idx === t2Idx) t2Idx = (t2Idx + 1) % sampleTeams.length;
-                
-                matchesData.push({
-                    id: matchesData.length + 1,
-                    round: r,
-                    dateStr: `${baseDay} ${baseDate}`,
-                    time: "03:30 م",
-                    team1: sampleTeams[t1Idx],
-                    team2: sampleTeams[t2Idx],
-                    venue: `ملعب نادي ${sampleTeams[t1Idx]} (المدينة الرياضية)`
-                });
-            }
-        }
 
         let currentRound = 1;
         let assignments = {};
@@ -307,7 +805,7 @@
 
             filteredMatches.forEach(match => {
                 const card = document.createElement('div');
-                card.className = "bg-slate-900/85 backdrop-blur-md border border-slate-800 rounded-2xl p-5 shadow-xl flex flex-col justify-between hover:border-slate-700 transition-all";
+                card.className = "bg-slate-900/50 border border-slate-800 rounded-2xl p-5 shadow-xl flex flex-col justify-between hover:border-slate-700 transition-all";
                 
                 const assigned = assignments[match.id] || "";
 
@@ -410,6 +908,91 @@
             const encodedText = encodeURIComponent(report);
             window.open(`https://wa.me/?text=${encodedText}`, '_blank');
             showToast("جاري التصدير إلى الواتساب...", "success");
+        }
+
+
+        // Logo (original colors, for the white PDF page)
+        const LOGO_ORIGINAL = "data:image/png;base64,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";
+
+        function escapeHtml(s) {
+            return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+        }
+
+        function buildReportHTML(round, list) {
+            const rows = list.map((m, i) => {
+                const p = assignments[m.id];
+                const parts = m.dateStr.split(' ');
+                const photographer = p
+                    ? `<b>${escapeHtml(p.name)}</b><br><span style="color:#475569;font-size:10px;">${escapeHtml(p.region)} • ${escapeHtml(p.phone)}</span>`
+                    : `<span style="color:#dc2626;font-weight:700;">لم يتم التحديد</span>`;
+                const td = 'border:1px solid #cbd5e1;padding:5px 7px;text-align:center;vertical-align:middle;';
+                return `<tr style="background:${i % 2 ? '#f1f5f9' : '#ffffff'};page-break-inside:avoid;">
+                    <td style="${td}">${i + 1}</td>
+                    <td style="${td}">${escapeHtml(parts[0])}<br><span style="color:#475569;font-size:10px;">${escapeHtml(parts[1] || '')}</span></td>
+                    <td style="${td}white-space:nowrap;">${escapeHtml(m.time)}</td>
+                    <td style="${td}font-weight:800;">${escapeHtml(m.team1)} × ${escapeHtml(m.team2)}</td>
+                    <td style="${td}font-size:10px;">${escapeHtml(m.venue)}</td>
+                    <td style="${td}">${photographer}</td>
+                </tr>`;
+            }).join('');
+
+            const th = 'background:#0f172a;color:#ffffff;border:1px solid #0f172a;padding:6px 7px;text-align:center;font-weight:700;';
+            return `<div dir="rtl" style="width:1050px;background:#ffffff;color:#0f172a;font-family:'Cairo',Arial,sans-serif;font-size:11px;padding:6px 10px;">
+                <div style="text-align:center;margin-bottom:8px;">
+                    <img src="${LOGO_ORIGINAL}" alt="" style="height:64px;width:auto;margin:0 auto;display:block;">
+                    <div style="font-size:18px;font-weight:900;margin-top:4px;">تكاليف مصورين دوري الدرجة الثانية</div>
+                    <div style="font-size:12px;color:#475569;font-weight:600;">الموسم الرياضي 2026-2027 • الجولة ${round} • عدد المباريات: ${list.length}</div>
+                </div>
+                <table style="width:100%;border-collapse:collapse;">
+                    <thead><tr>
+                        <th style="${th}width:4%;">م</th>
+                        <th style="${th}width:14%;">اليوم والتاريخ</th>
+                        <th style="${th}width:8%;">الوقت</th>
+                        <th style="${th}width:22%;">المباراة</th>
+                        <th style="${th}width:30%;">الملعب</th>
+                        <th style="${th}width:22%;">المصور المكلف</th>
+                    </tr></thead>
+                    <tbody>${rows}</tbody>
+                </table>
+            </div>`;
+        }
+
+        function printReportFallback(html) {
+            const w = window.open('', '_blank');
+            if (!w) { showToast('المتصفح منع فتح نافذة الطباعة', 'info'); return; }
+            w.document.write(`<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8"><title>تكليف الجولة ${currentRound}</title><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet"><style>@page{size:A4 landscape;margin:8mm}body{margin:0}</style></head><body>${html}</body></html>`);
+            w.document.close();
+            setTimeout(() => w.print(), 800);
+        }
+
+        async function exportToPDF() {
+            const list = matchesData.filter(m => m.round === currentRound);
+            if (list.length === 0) return;
+
+            const unassigned = list.filter(m => !assignments[m.id]).length;
+            if (unassigned > 0 && !confirm(`باقي ${unassigned} مباراة بدون مصور مكلف. تبغى تصدّر ملف PDF كذا؟`)) return;
+
+            const html = buildReportHTML(currentRound, list);
+            if (typeof html2pdf === 'undefined') { printReportFallback(html); return; }
+
+            showToast('جاري تجهيز ملف PDF...', 'info');
+            const holder = document.createElement('div');
+            holder.innerHTML = html;
+            try {
+                if (document.fonts && document.fonts.ready) await document.fonts.ready;
+                await html2pdf().set({
+                    margin: [8, 8, 8, 8],
+                    filename: `تكليف_الجولة_${currentRound}.pdf`,
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { scale: 2, useCORS: true, backgroundColor: '#ffffff' },
+                    jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' },
+                    pagebreak: { mode: ['css', 'legacy'], avoid: ['tr'] }
+                }).from(holder.firstElementChild).save();
+                showToast('تم تصدير ملف PDF', 'success');
+            } catch (e) {
+                console.error(e);
+                printReportFallback(html);
+            }
         }
 
         function showToast(message, type = "success") {
