@@ -176,10 +176,10 @@
             { name: "عبدالرحيم المحلبدي", region: "رابغ", phone: "0530481877" },
             { name: "عبدالعزيز الجنيدي", region: "عرعر", phone: "0557232262" },
             { name: "محمد المسعود", region: "شقراء", phone: "0556279046" },
-            { name: "حمود الشمري", region: "الجبيل", phone: "0554126163" },
             { name: "محمد المعين", region: "الجوف", phone: "0567966817" },
             { name: "يوسف العنزي", region: "النعيرية", phone: "0534465438" },
             { name: "جمعان الغامدي", region: "الباحة", phone: "0509957563" },
+            { name: "حمود الشمري", region: "الجبيل", phone: "0554126163" },
             { name: "حسن الخطام", region: "حفر الباطن", phone: "0592083225" },
             { name: "سليمان المختار", region: "عفيف", phone: "0535811508" }
         ];
@@ -919,39 +919,40 @@
             return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
         }
 
-        function buildReportHTML(round, list) {
+        function buildReportHTML(round, list, fs = 11) {
+            const td = 'border:1px solid #cbd5e1;padding:0.2em 0.4em;text-align:center;vertical-align:middle;line-height:1.25;';
             const rows = list.map((m, i) => {
                 const p = assignments[m.id];
-                const parts = m.dateStr.split(' ');
                 const photographer = p
-                    ? `<b>${escapeHtml(p.name)}</b><br><span style="color:#475569;font-size:10px;">${escapeHtml(p.region)} • ${escapeHtml(p.phone)}</span>`
+                    ? `<b>${escapeHtml(p.name)}</b> <span style="color:#475569;font-size:0.88em;">(${escapeHtml(p.region)}) ${escapeHtml(p.phone)}</span>`
                     : `<span style="color:#dc2626;font-weight:700;">لم يتم التحديد</span>`;
-                const td = 'border:1px solid #cbd5e1;padding:5px 7px;text-align:center;vertical-align:middle;';
-                return `<tr style="background:${i % 2 ? '#f1f5f9' : '#ffffff'};page-break-inside:avoid;">
+                return `<tr style="background:${i % 2 ? '#f1f5f9' : '#ffffff'};">
                     <td style="${td}">${i + 1}</td>
-                    <td style="${td}">${escapeHtml(parts[0])}<br><span style="color:#475569;font-size:10px;">${escapeHtml(parts[1] || '')}</span></td>
+                    <td style="${td}white-space:nowrap;">${escapeHtml(m.dateStr)}</td>
                     <td style="${td}white-space:nowrap;">${escapeHtml(m.time)}</td>
-                    <td style="${td}font-weight:800;">${escapeHtml(m.team1)} × ${escapeHtml(m.team2)}</td>
-                    <td style="${td}font-size:10px;">${escapeHtml(m.venue)}</td>
+                    <td style="${td}font-weight:800;white-space:nowrap;">${escapeHtml(m.team1)} × ${escapeHtml(m.team2)}</td>
+                    <td style="${td}font-size:0.9em;">${escapeHtml(m.venue)}</td>
                     <td style="${td}">${photographer}</td>
                 </tr>`;
             }).join('');
 
-            const th = 'background:#0f172a;color:#ffffff;border:1px solid #0f172a;padding:6px 7px;text-align:center;font-weight:700;';
-            return `<div dir="rtl" style="width:1050px;background:#ffffff;color:#0f172a;font-family:'Cairo',Arial,sans-serif;font-size:11px;padding:6px 10px;">
-                <div style="text-align:center;margin-bottom:8px;">
-                    <img src="${LOGO_ORIGINAL}" alt="" style="height:64px;width:auto;margin:0 auto;display:block;">
-                    <div style="font-size:18px;font-weight:900;margin-top:4px;">تكاليف مصورين دوري الدرجة الثانية</div>
-                    <div style="font-size:12px;color:#475569;font-weight:600;">الموسم الرياضي 2026-2027 • الجولة ${round} • عدد المباريات: ${list.length}</div>
+            const th = 'background:#0f172a;color:#ffffff;border:1px solid #0f172a;padding:0.25em 0.4em;text-align:center;font-weight:700;line-height:1.25;';
+            return `<div dir="rtl" style="width:1050px;box-sizing:border-box;background:#ffffff;color:#0f172a;font-family:'Cairo',Arial,sans-serif;font-size:${fs}px;padding:2px 4px;">
+                <div style="display:flex;align-items:center;justify-content:center;gap:0.9em;margin-bottom:0.45em;">
+                    <img src="${LOGO_ORIGINAL}" alt="" style="height:3.6em;width:auto;display:block;">
+                    <div style="text-align:center;">
+                        <div style="font-size:1.6em;font-weight:900;line-height:1.2;">تكليف مصورين دوري الدرجة الثانية</div>
+                        <div style="color:#475569;font-weight:600;line-height:1.3;">الموسم الرياضي 2026-2027 • الجولة ${round} • عدد المباريات: ${list.length}</div>
+                    </div>
                 </div>
-                <table style="width:100%;border-collapse:collapse;">
+                <table style="width:100%;border-collapse:collapse;table-layout:fixed;">
                     <thead><tr>
-                        <th style="${th}width:4%;">م</th>
-                        <th style="${th}width:14%;">اليوم والتاريخ</th>
+                        <th style="${th}width:3%;">م</th>
+                        <th style="${th}width:15%;">اليوم والتاريخ</th>
                         <th style="${th}width:8%;">الوقت</th>
-                        <th style="${th}width:22%;">المباراة</th>
-                        <th style="${th}width:30%;">الملعب</th>
-                        <th style="${th}width:22%;">المصور المكلف</th>
+                        <th style="${th}width:23%;">المباراة</th>
+                        <th style="${th}width:28%;">الملعب</th>
+                        <th style="${th}width:23%;">المصور المكلف</th>
                     </tr></thead>
                     <tbody>${rows}</tbody>
                 </table>
@@ -961,7 +962,7 @@
         function printReportFallback(html) {
             const w = window.open('', '_blank');
             if (!w) { showToast('المتصفح منع فتح نافذة الطباعة', 'info'); return; }
-            w.document.write(`<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8"><title>تكليف الجولة ${currentRound}</title><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet"><style>@page{size:A4 landscape;margin:8mm}body{margin:0}</style></head><body>${html}</body></html>`);
+            w.document.write(`<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8"><title>تكليف الجولة ${currentRound}</title><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet"><style>@page{size:A4 landscape;margin:6mm}body{margin:0}</style></head><body>${html}</body></html>`);
             w.document.close();
             setTimeout(() => w.print(), 800);
         }
@@ -973,26 +974,41 @@
             const unassigned = list.filter(m => !assignments[m.id]).length;
             if (unassigned > 0 && !confirm(`باقي ${unassigned} مباراة بدون مصور مكلف. تبغى تصدّر ملف PDF كذا؟`)) return;
 
-            const html = buildReportHTML(currentRound, list);
-            if (typeof html2pdf === 'undefined') { printReportFallback(html); return; }
+            if (typeof html2pdf === 'undefined') { printReportFallback(buildReportHTML(currentRound, list, 10)); return; }
 
             showToast('جاري تجهيز ملف PDF...', 'info');
-            const holder = document.createElement('div');
-            holder.innerHTML = html;
+            const host = document.createElement('div');
+            host.style.cssText = 'position:absolute;left:-10000px;top:0;';
+            document.body.appendChild(host);
+            let html = '';
             try {
                 if (document.fonts && document.fonts.ready) await document.fonts.ready;
+
+                // A4 landscape with 6mm margins: shrink text until everything fits on ONE page
+                const pageH = 1050 * 198 / 285;
+                let fs = 13, el;
+                for (let i = 0; i < 20; i++) {
+                    host.innerHTML = buildReportHTML(currentRound, list, fs);
+                    el = host.firstElementChild;
+                    if (el.offsetHeight <= pageH - 8 || fs <= 6) break;
+                    fs -= 0.5;
+                }
+                html = el.outerHTML;
+
                 await html2pdf().set({
-                    margin: [8, 8, 8, 8],
+                    margin: [6, 6, 6, 6],
                     filename: `تكليف_الجولة_${currentRound}.pdf`,
                     image: { type: 'jpeg', quality: 0.98 },
                     html2canvas: { scale: 2, useCORS: true, backgroundColor: '#ffffff' },
                     jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' },
-                    pagebreak: { mode: ['css', 'legacy'], avoid: ['tr'] }
-                }).from(holder.firstElementChild).save();
+                    pagebreak: { mode: 'css' }
+                }).from(el).save();
                 showToast('تم تصدير ملف PDF', 'success');
             } catch (e) {
                 console.error(e);
-                printReportFallback(html);
+                printReportFallback(html || buildReportHTML(currentRound, list, 10));
+            } finally {
+                host.remove();
             }
         }
 
